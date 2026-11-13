@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Impact Tracker: India and Outside India</title>
+<style>
+
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#f7f7f5; --surface:#ffffff; --surface2:#f0f0ec; --text:#1d1d1b; --muted:#6b6b66; --border:#dcdcd5;
+  --accent:#2f5bea; --accent-bg:#e8edfd;
+  --good:#1a7f4b; --good-bg:#e1f4ea; --warn:#9a6b00; --warn-bg:#fbf0d3; --bad:#b3261e; --bad-bg:#fbe4e2; --neutral:#55554f; --neutral-bg:#ebebe6;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#151514; --surface:#1f1f1d; --surface2:#292926; --text:#ecece8; --muted:#a2a29a; --border:#3a3a36;
+    --accent:#8aa6ff; --accent-bg:#26304f;
+    --good:#6fd39b; --good-bg:#1b3a2a; --warn:#e6bd5b; --warn-bg:#3d3216; --bad:#ff8a80; --bad-bg:#46211e; --neutral:#c4c4bb; --neutral-bg:#33332f;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#151514; --surface:#1f1f1d; --surface2:#292926; --text:#ecece8; --muted:#a2a29a; --border:#3a3a36;
+  --accent:#8aa6ff; --accent-bg:#26304f;
+  --good:#6fd39b; --good-bg:#1b3a2a; --warn:#e6bd5b; --warn-bg:#3d3216; --bad:#ff8a80; --bad-bg:#46211e; --neutral:#c4c4bb; --neutral-bg:#33332f;
+  color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:1400px;margin:0 auto;padding:16px}
+h1{font-size:20px;margin:0 0 2px;font-weight:650}
+.sub{color:var(--muted);font-size:12.5px;margin-bottom:14px}
+.search{display:flex;gap:8px;margin-bottom:10px}
+.search input{flex:1;min-width:0;padding:11px 14px;font-size:15px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text)}
+.search input:focus,select:focus{outline:2px solid var(--accent);outline-offset:1px}
+button{font:inherit;cursor:pointer}
+.btn{padding:10px 14px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text)}
+.btn:hover{background:var(--surface2)}
+.btn.on{background:var(--accent-bg);border-color:var(--accent);color:var(--accent)}
+.filters{display:none;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;padding:12px;margin-bottom:10px;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+.filters.open{display:grid}
+.filters label{display:flex;flex-direction:column;gap:4px;font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+select{padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-size:13.5px;text-transform:none;letter-spacing:0;width:100%}
+.kpis{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.kpi-row{display:flex;flex-wrap:nowrap;gap:8px;align-items:stretch}
+.kpi-row.clicks{overflow-x:auto;padding-bottom:2px}
+.kpi{font:inherit;text-align:left;color:var(--text);border-radius:12px}
+.kpi .n{font-size:22px;font-weight:700;line-height:1.1}
+.kpi .l{font-size:12px;color:var(--muted)}
+.kpi.static{flex:1 1 0;min-width:140px;padding:12px 16px;background:var(--text);color:var(--bg);border:1px solid var(--text);cursor:default;user-select:none}
+.kpi.static .n{font-size:30px}
+.kpi.static .l{color:var(--bg);opacity:.75;text-transform:uppercase;letter-spacing:.05em;font-size:11px}
+.kpi.click{flex:1 0 135px;padding:9px 12px 8px;cursor:pointer;border:1px solid var(--kc-bd,var(--border));border-left:5px solid var(--kc,var(--accent));background:var(--kc-bg,var(--surface));transition:transform .08s ease,box-shadow .08s ease}
+.kpi.click .n{color:var(--kc,var(--accent))}
+.kpi.click .l{color:var(--text)}
+.kpi.click::after{content:"Click to filter \203A";display:block;margin-top:3px;font-size:10.5px;color:var(--kc,var(--accent));opacity:.85}
+.kpi.click:hover{transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,.14)}
+.kpi.click:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.kpi.click.active{box-shadow:0 0 0 2px var(--kc,var(--accent))}
+.kpi.click.active::after{content:"Filter on \00D7 click to clear"}
+.k-growing{--kc:var(--good);--kc-bg:var(--good-bg);--kc-bd:var(--good-bg)}
+.k-stable{--kc:var(--warn);--kc-bg:var(--warn-bg);--kc-bd:var(--warn-bg)}
+.k-struggling{--kc:var(--bad);--kc-bg:var(--bad-bg);--kc-bd:var(--bad-bg)}
+.k-unclear{--kc:var(--neutral);--kc-bg:var(--neutral-bg);--kc-bd:var(--neutral-bg)}
+.k-erp{--kc:var(--accent);--kc-bg:var(--accent-bg);--kc-bd:var(--accent-bg)}
+.k-noerp{--kc:var(--neutral);--kc-bg:var(--surface);--kc-bd:var(--border)}
+.status{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between;margin:6px 0 8px;color:var(--muted);font-size:13px}
+.status b{color:var(--text)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;background:var(--accent-bg);color:var(--accent);font-size:12px;border:0}
+.chip:hover{filter:brightness(.95)}
+.tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+table{border-collapse:collapse;width:100%;min-width:980px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+th{font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);background:var(--surface2);white-space:nowrap}
+tbody tr.row{cursor:pointer}
+tbody tr.row:hover{background:var(--surface2)}
+tbody tr.row.open{background:var(--accent-bg)}
+td.num{color:var(--muted);width:48px}
+td.brand{font-weight:600}
+.badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:550;white-space:nowrap}
+.b-Growing{background:var(--good-bg);color:var(--good)}
+.b-Stable{background:var(--warn-bg);color:var(--warn)}
+.b-Struggling{background:var(--bad-bg);color:var(--bad)}
+.b-Unclear{background:var(--neutral-bg);color:var(--neutral)}
+.muted{color:var(--muted)}
+tr.detail td{background:var(--surface2);padding:14px 16px}
+dl.d{display:grid;grid-template-columns:minmax(130px,200px) 1fr;gap:6px 16px;margin:0}
+dl.d dt{color:var(--muted);font-size:12.5px}
+dl.d dd{margin:0;overflow-wrap:anywhere}
+a{color:var(--accent)}
+.empty{padding:36px;text-align:center;color:var(--muted)}
+.tabs{display:flex;gap:6px;margin:0 0 14px;border-bottom:1px solid var(--border);overflow-x:auto}
+.tab{font:inherit;padding:9px 16px;border:0;border-bottom:3px solid transparent;background:transparent;color:var(--muted);cursor:pointer;white-space:nowrap;font-weight:550}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab .pill{display:inline-block;margin-left:6px;padding:0 7px;border-radius:999px;background:var(--surface2);color:var(--muted);font-size:11.5px;font-weight:600}
+.tab.active .pill{background:var(--accent-bg);color:var(--accent)}
+.doc{display:flex;flex-direction:column;gap:14px;max-width:1100px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.card h2{margin:0 0 4px;font-size:16px}
+.card h3{margin:0 0 6px;font-size:14px}
+.card p{margin:6px 0}
+.lead{color:var(--muted)}
+.note{margin:10px 0 0;padding:10px 12px;border-radius:10px;background:var(--warn-bg);color:var(--text);border:1px solid var(--border);font-size:13px}
+.gcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px;margin-top:12px}
+.gcard{border:1px solid var(--border);border-left:5px solid var(--kc);border-radius:10px;padding:12px 14px;background:var(--kc-bg)}
+.gcard.g-Growing{--kc:var(--good);--kc-bg:var(--good-bg)}
+.gcard.g-Stable{--kc:var(--warn);--kc-bg:var(--warn-bg)}
+.gcard.g-Struggling{--kc:var(--bad);--kc-bg:var(--bad-bg)}
+.gcard.g-Unclear{--kc:var(--neutral);--kc-bg:var(--neutral-bg)}
+.gcard .gh{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:6px}
+.gcard .gt{font-size:16px;font-weight:700;color:var(--kc)}
+.gcard .gn{font-size:12.5px;color:var(--text);opacity:.8}
+.gcard ul{margin:6px 0 8px;padding-left:18px}
+.gcard li{margin:3px 0}
+.gcard .ex{font-size:12.5px;margin-top:8px;padding-top:8px;border-top:1px dashed var(--border)}
+.gcard .ex b{display:block}
+.gcard .ex div{margin:4px 0}
+details{margin-top:8px}
+summary{cursor:pointer;color:var(--accent);font-size:13px}
+.biglist{margin-top:8px;max-height:340px;overflow:auto;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
+.biglist .it{padding:7px 10px;border-bottom:1px solid var(--border);font-size:12.5px}
+.biglist .it:last-child{border-bottom:0}
+.biglist .it b{font-weight:600}
+table.plain{min-width:0;width:100%}
+table.plain td:first-child{white-space:nowrap;font-weight:600}
+.scroll{overflow-x:auto}
+.kv{display:grid;grid-template-columns:minmax(150px,220px) 1fr;gap:6px 16px;margin:8px 0 0}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;overflow-wrap:anywhere}
+.chips2{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chips2 span{padding:3px 10px;border-radius:999px;background:var(--surface2);font-size:12.5px}
+.chips2 span b{margin-left:4px;color:var(--accent)}
+.tag{display:inline-block;padding:1px 8px;border-radius:999px;background:var(--surface2);color:var(--muted);font-size:11.5px;margin-left:6px;font-weight:500}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+.stat .n{font-size:26px;font-weight:700;line-height:1.1}
+.stat .l{font-size:12px;color:var(--muted);margin-top:2px}
+.two{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:820px){.two{grid-template-columns:1fr}}
+.bars{display:flex;flex-direction:column;gap:5px}
+.brow{display:grid;grid-template-columns:minmax(110px,190px) 1fr auto;gap:10px;align-items:center;padding:3px 6px;border:0;background:transparent;color:var(--text);font:inherit;text-align:left;border-radius:8px;width:100%}
+.brow.click{cursor:pointer}
+.brow.click:hover{background:var(--surface2)}
+.bl{font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.track{height:16px;background:var(--surface2);border-radius:6px;overflow:hidden;display:flex}
+.fill{height:100%;background:var(--accent);border-radius:6px 0 0 6px;min-width:2px}
+.seg{height:100%}
+.seg.s-Growing{background:var(--good)}
+.seg.s-Stable{background:var(--warn)}
+.seg.s-Struggling{background:var(--bad)}
+.seg.s-Unclear{background:var(--neutral);opacity:.55}
+.bv{font-size:12.5px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.donutwrap{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+svg.donut{width:170px;height:170px;flex:0 0 auto}
+.legend{display:flex;flex-direction:column;gap:5px;font-size:12.5px;min-width:150px}
+.legend div{display:flex;align-items:center;gap:7px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;flex:0 0 auto}
+.legend b{margin-left:auto;padding-left:8px;font-variant-numeric:tabular-nums}
+.cols{display:flex;align-items:flex-end;gap:6px;height:170px;padding-top:6px;overflow-x:auto}
+.col{flex:1 0 34px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;font-size:11.5px;color:var(--muted)}
+.col .bar{width:100%;background:var(--accent);border-radius:5px 5px 0 0;min-height:2px}
+.col .cv{color:var(--text);font-weight:600;margin-bottom:2px}
+.col .cl{margin-top:4px;white-space:nowrap}
+.sublegend{display:flex;flex-wrap:wrap;gap:12px;font-size:12.5px;margin:6px 0 8px}
+.sublegend span{display:inline-flex;align-items:center;gap:6px}
+.sublegend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.fine{font-size:12.5px;color:var(--muted);margin:8px 0 0}
+.stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:700px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.two{grid-template-columns:minmax(0,1fr) auto;gap:22px;align-items:center}
+@media (max-width:620px){.two{grid-template-columns:1fr}}
+.brow{grid-template-columns:minmax(100px,170px) 1fr auto;gap:8px;padding:1px 4px}
+.bars{gap:2px}
+.bl{font-size:12px}
+.track{height:12px}
+.track.tall{height:20px}
+.seg{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:650;overflow:hidden}
+.bv{font-size:12px}
+.donutcol{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:190px}
+svg.donut{width:130px;height:130px}
+.legend{font-size:12px;gap:3px;min-width:190px}
+.tip{position:fixed;z-index:50;display:none;background:var(--text);color:var(--bg);padding:6px 10px;border-radius:8px;font-size:12.5px;pointer-events:none;max-width:280px}
+@media (max-width:600px){
+  .kv{grid-template-columns:1fr;gap:0}
+  .kv dt{margin-top:8px}
+}
+@media (max-width:600px){
+  .wrap{padding:12px}
+  dl.d{grid-template-columns:1fr;gap:0}
+  dl.d dt{margin-top:8px}
+}
+
+.markets{display:flex;gap:8px;margin:2px 0 14px;flex-wrap:wrap}
+.mkt{font:inherit;padding:10px 20px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-weight:650;cursor:pointer}
+.mkt:hover{background:var(--surface2)}
+.mkt.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+.mkt .pill{display:inline-block;margin-left:8px;padding:0 8px;border-radius:999px;background:var(--surface2);color:var(--muted);font-size:12px;font-weight:600}
+.mkt.active .pill{background:var(--bg);color:var(--text)}
+td.wrapcell{min-width:260px}
+.b-Confirmed{background:var(--good-bg);color:var(--good)}
+.b-Planned{background:var(--warn-bg);color:var(--warn)}
+.b-Unconfirmed{background:var(--accent-bg);color:var(--accent)}
+.b-None{background:var(--neutral-bg);color:var(--neutral)}
+.seg.s-None{opacity:.55}
+td.layercell{white-space:nowrap}
+.kpi.click{flex:1 0 150px}
+.mkt{margin-right:0}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>AI Impact Tracker: India and Outside India</h1>
+  <div class="sub">Every value is shown as written in the Google Sheet. Regions are kept separate.</div>
+  <div id="app"><div class="sub">Loading the data…</div></div>
+</div>
+<script>
+/* ===== SETTINGS you can change (everything else reads from data.csv) ===== */
+const CONFIG={
+  sheetTitle:'AI Impact Tracker',   // name shown as the source of the data
+  sheetUrl:'https://docs.google.com/spreadsheets/d/1s-iK9lUTm_CSLZl71nGRbgIfFkFj2sh-MmHSAF8Oe7M/edit',  // link on the Sources tab ('' to hide)
+  dataFile:'data.csv',              // the company list
+  keyFile:'key.csv'                 // optional: plain meanings of labels (README tab)
+};
+let DATA={};      // filled from data.csv
+let KEY=[];       // filled from key.csv (optional)
+let DATA_DATE=''; // newest 'Last updated' value found in data.csv
+const SHEET_TITLE=CONFIG.sheetTitle, SHEET_URL=CONFIG.sheetUrl;
+const BLANK='__blank__';
+const SURE_ORDER=['Confirmed','Planned','Unconfirmed','-'];
+const SURE_LABEL={'Confirmed':'Confirmed','Planned':'Planned','Unconfirmed':'Unconfirmed','-':'No recent event'};
+const SURE_CLASS={'Confirmed':'Confirmed','Planned':'Planned','Unconfirmed':'Unconfirmed','-':'None'};
+const SURE_COL={'Confirmed':'#1a9e6b','Planned':'#d4a017','Unconfirmed':'#2f5bea','-':'#8b8b84'};
+const SURE_TXT={'Confirmed':'#ffffff','Planned':'#1d1d1b','Unconfirmed':'#ffffff','-':'#ffffff'};
+const sureLabel=v=>SURE_LABEL[v]||v;
+const sureClass=v=>SURE_CLASS[v]||'None';
+const sureCol=v=>SURE_COL[v]||'#8b8b84';
+const sureTxt=v=>SURE_TXT[v]||'#ffffff';
+
+/* ---------- shared helpers ---------- */
+function h(tag, attrs){
+  const e=document.createElement(tag);
+  if(attrs) for(const k in attrs){ const v=attrs[k]; if(k==='class') e.className=v; else if(k==='text') e.textContent=v; else e.setAttribute(k,v); }
+  for(let i=2;i<arguments.length;i++){
+    [].concat(arguments[i]).forEach(c=>{ if(c==null||c===false) return; e.append(c.nodeType ? c : document.createTextNode(String(c))); });
+  }
+  return e;
+}
+function safeUrl(u){ return /^https?:\/\//i.test(u) ? u : null; }
+function aLink(url,label){
+  const u=safeUrl(url);
+  return u ? h('a',{href:u,target:'_blank',rel:'noopener noreferrer',text:label||url}) : document.createTextNode(label||url);
+}
+function host(u){ try{ return new URL(u).hostname.replace(/^www\./,''); }catch(e){ return ''; } }
+function section(title, intro){
+  const s=h('section',{class:'card'});
+  s.append(h('h2',{text:title}));
+  if(intro) s.append(h('p',{class:'lead',text:intro}));
+  return s;
+}
+const splitMulti=v=>String(v||'').split(',').map(s=>s.trim()).filter(Boolean);
+const layerNum=s=>{ const m=/^(\d+)/.exec(s); return m?Number(m[1]):99; };
+const pct=(n,t)=>(t?(n*100/t):0).toFixed(1)+'%';
+const PALETTE=['#e8710a','#2f5bea','#1a9e6b','#8a5cf6','#c2368c','#d4a017','#0e9aa7','#d6453d'];
+const OTHER_COLOR='#8b8b84';
+const layerColor=l=>PALETTE[(layerNum(l)-1)%PALETTE.length];
+const SVGNS='http://www.w3.org/2000/svg';
+function svgEl(tag,attrs){ const e=document.createElementNS(SVGNS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); return e; }
+function donut(items,total,topText,bottomText){
+  const svg=svgEl('svg',{viewBox:'0 0 120 120','class':'donut',role:'img','aria-label':topText+' '+bottomText+': '+items.map(i=>i.label+' '+i.value).join(', ')});
+  const r=44, C=2*Math.PI*r; let off=0;
+  const bg=svgEl('circle',{cx:60,cy:60,r:r,fill:'none','stroke-width':20}); bg.style.stroke='var(--surface2)'; svg.append(bg);
+  items.forEach(it=>{
+    if(!it.value) return;
+    const len=C*it.value/total;
+    const c=svgEl('circle',{cx:60,cy:60,r:r,fill:'none','stroke-width':20,'stroke-dasharray':len+' '+(C-len),'stroke-dashoffset':-off,transform:'rotate(-90 60 60)'});
+    c.style.stroke=it.color;
+    const t=svgEl('title',{}); t.textContent=`${it.label}: ${it.value} (${pct(it.value,total)})`; c.append(t);
+    svg.append(c); off+=len;
+  });
+  const t1=svgEl('text',{x:60,y:58,'text-anchor':'middle','font-size':18,'font-weight':700}); t1.style.fill='var(--text)'; t1.textContent=topText;
+  const t2=svgEl('text',{x:60,y:73,'text-anchor':'middle','font-size':7.5}); t2.style.fill='var(--muted)'; t2.textContent=bottomText;
+  svg.append(t1,t2);
+  return svg;
+}
+function legend(items,total,onClick){
+  const box=h('div',{class:'legend'});
+  items.forEach(it=>{
+    const sw=h('i'); sw.style.background=it.color;
+    box.append(h('div',null,sw,h('span',{text:it.label}),h('b',{text:`${it.value} · ${pct(it.value,total)}`})));
+  });
+  return box;
+}
+function bars(entries,total,onClick,colorFn){
+  const max=Math.max(1,...entries.map(e=>e[1]));
+  const wrap=h('div',{class:'bars'});
+  entries.forEach(([label,val,key])=>{
+    const clickable=onClick && key!==null;
+    const row=h(clickable?'button':'div',{class:'brow'+(clickable?' click':''),'data-tip':`${label}: ${val} (${pct(val,total)})`});
+    if(clickable){ row.type='button'; row.addEventListener('click',()=>onClick(key===undefined?label:key)); }
+    const fill=h('div',{class:'fill'}); fill.style.width=(val/max*100)+'%';
+    if(colorFn) fill.style.background=colorFn(label,key);
+    row.append(h('span',{class:'bl',text:label,title:label}),h('div',{class:'track'},fill),h('span',{class:'bv',text:`${val} · ${pct(val,total)}`}));
+    wrap.append(row);
+  });
+  return wrap;
+}
+function linkified(text){
+  const box=h('span');
+  const s=String(text||'');
+  const re=/https?:\/\/[^\s;]+/g; let last=0, m;
+  while((m=re.exec(s))){ if(m.index>last) box.append(document.createTextNode(s.slice(last,m.index))); box.append(aLink(m[0],m[0])); last=m.index+m[0].length; }
+  if(last<s.length) box.append(document.createTextNode(s.slice(last)));
+  return box;
+}
+
+/* ---------- market config ---------- */
+const MARKETS={};   // one entry per Region value found in data.csv
+const keyRows=kind=>KEY.filter(r=>r[1]===kind);
+const keyMeaning=(kind,item)=>{ const r=KEY.find(x=>x[1]===kind&&x[0]===item); return r?r[2]:''; };
+
+function marketTemplate(M){
+  return `
+  <div class="sub">Source: ${CONFIG.dataFile}, from the Google Sheet “${SHEET_TITLE}”, region “${M.label}”. Every value is shown as written in the sheet.${DATA_DATE?` Newest update in the data: ${DATA_DATE}.`:''}</div>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" data-view="companies">Companies<span class="pill" data-id="pill-companies"></span></button>
+    <button class="tab" role="tab" data-view="analytics">Analytics</button>
+    <button class="tab" role="tab" data-view="readme">README</button>
+    <button class="tab" role="tab" data-view="sources">Sources</button>
+  </div>
+  <div data-id="view-companies">
+    <div class="search">
+      <input data-id="q" type="search" placeholder="Search by company, type, city, update…" autocomplete="off" aria-label="Search companies">
+      <button class="btn" data-id="toggleFilters" aria-expanded="false">Filters</button>
+      <button class="btn" data-id="reset">Reset</button>
+    </div>
+    <div class="filters" data-id="filters">
+      <label>Layer<select data-id="f-layer"></select></label>
+      <label>Type<select data-id="f-type"></select></label>
+      <label>Company kind<select data-id="f-kind"></select></label>
+      <label>What happened<select data-id="f-event"></select></label>
+      <label>How sure<select data-id="f-sure"></select></label>
+      <label>Country<select data-id="f-country"></select></label>
+      <label>Supply chain level<select data-id="f-level"></select></label>
+      <label>Sort by<select data-id="f-sort">
+        <option value="sno">S.No</option>
+        <option value="company">Company (A–Z)</option>
+        <option value="layer">Layer (1 to 5)</option>
+        <option value="type">Type (A–Z)</option>
+        <option value="updated">Last updated (newest first)</option>
+      </select></label>
+    </div>
+    <div class="kpis" data-id="kpis"></div>
+    <div class="status"><div data-id="count"></div><div class="chips" data-id="chips"></div></div>
+    <div class="tablewrap">
+      <table><thead data-id="thead"></thead><tbody data-id="tbody"></tbody></table>
+      <div class="empty" data-id="empty" hidden>No companies match the current search and filters.</div>
+    </div>
+    <div class="sub" style="margin-top:10px">Click any row to see every field from the sheet for that company.</div>
+  </div>
+  <div data-id="view-analytics" hidden></div>
+  <div data-id="view-readme" hidden></div>
+  <div data-id="view-sources" hidden></div>`;
+}
+
+function createMarket(M){
+  const COLS=M.cols, ROWS=M.rows, N=ROWS.length;
+  const I={}; COLS.forEach((c,i)=>I[c]=i);
+  const root=document.getElementById('market-'+M.key);
+  root.innerHTML=marketTemplate(M);
+  const $=id=>root.querySelector('[data-id="'+id+'"]');
+  const col=(r,name)=>(r[I[name]]||'').trim();
+  const countMap=fn=>{ const m=new Map(); ROWS.forEach(r=>{ [].concat(fn(r)).forEach(k=>m.set(k,(m.get(k)||0)+1)); }); return m; };
+  const uniq=name=>countMap(r=>col(r,name));
+  const multi=name=>countMap(r=>{ const a=splitMulti(col(r,name)); return a.length?[...new Set(a)]:['Not stated']; });
+  const sureList=()=>SURE_ORDER.concat([...uniq('How sure').keys()].filter(v=>!SURE_ORDER.includes(v)&&v!==''));
+  const state={q:'',layer:'',type:'',kind:'',event:'',sure:'',country:'',level:'',sort:'sno'};
+  const sortedEntries=(map,byCount)=>{ const a=[...map.entries()]; a.sort(byCount?(x,y)=>y[1]-x[1]||String(x[0]).localeCompare(String(y[0])):(x,y)=>String(x[0]).localeCompare(String(y[0]))); return a; };
+
+  /* ===== Companies tab ===== */
+  function fillSelect(sel, items, anyLabel){
+    sel.textContent='';
+    sel.appendChild(h('option',{value:'',text:anyLabel}));
+    items.forEach(([val,label])=>sel.appendChild(h('option',{value:val,text:label})));
+  }
+  function buildFilters(){
+    const lay=[...uniq('Layer').entries()].sort((a,b)=>layerNum(a[0])-layerNum(b[0]));
+    fillSelect($('f-layer'),lay.map(([v,n])=>[v,`${v} (${n})`]),'All layers');
+    fillSelect($('f-type'),sortedEntries(uniq('Type'),true).map(([v,n])=>[v,`${v} (${n})`]),'All types');
+    fillSelect($('f-kind'),sortedEntries(uniq('Company kind'),true).map(([v,n])=>[v,`${v} (${n})`]),'All kinds');
+    fillSelect($('f-event'),sortedEntries(multi('What happened'),true).map(([v,n])=>[v,`${v} (${n})`]),'Any event');
+    const sm=uniq('How sure');
+    fillSelect($('f-sure'),sureList().filter(v=>sm.has(v)).map(v=>[v,`${sureLabel(v)} (${sm.get(v)})`]),'Any');
+    fillSelect($('f-country'),sortedEntries(multi('Country'),true).map(([v,n])=>[v,`${v} (${n})`]),'All countries');
+    fillSelect($('f-level'),sortedEntries(uniq('Supply chain level'),false).map(([v,n])=>[v,`${v} (${n})`]),'All levels');
+  }
+  function matches(r){
+    if(state.layer && col(r,'Layer')!==state.layer) return false;
+    if(state.type && col(r,'Type')!==state.type) return false;
+    if(state.kind && col(r,'Company kind')!==state.kind) return false;
+    if(state.sure && col(r,'How sure')!==state.sure) return false;
+    if(state.level && col(r,'Supply chain level')!==state.level) return false;
+    if(state.event && !splitMulti(col(r,'What happened')).includes(state.event)) return false;
+    if(state.country && !splitMulti(col(r,'Country')).includes(state.country)) return false;
+    if(state.q){
+      const hay=r.join(' \u0001 ').toLowerCase();
+      for(const t of state.q.toLowerCase().split(/\s+/).filter(Boolean)){ if(!hay.includes(t)) return false; }
+    }
+    return true;
+  }
+  function sortRows(list){
+    const s=state.sort, out=list.slice(), C=r=>col(r,'Company');
+    const sno=(a,b)=>Number(col(a,'S.No'))-Number(col(b,'S.No'));
+    if(s==='company') out.sort((a,b)=>C(a).localeCompare(C(b)));
+    else if(s==='layer') out.sort((a,b)=>layerNum(col(a,'Layer'))-layerNum(col(b,'Layer'))||C(a).localeCompare(C(b)));
+    else if(s==='type') out.sort((a,b)=>col(a,'Type').localeCompare(col(b,'Type'))||C(a).localeCompare(C(b)));
+    else if(s==='updated') out.sort((a,b)=>col(b,'Last updated').localeCompare(col(a,'Last updated'))||sno(a,b));
+    else out.sort(sno);
+    return out;
+  }
+  const TCOLS=[['S.No','S.No','num'],['Company','Company','brand'],['Layer','Layer','layercell'],['Type','Type'],['Company kind','Kind'],['Country','Country'],['City','City'],['What happened','What happened'],['How sure','How sure'],['Last updated','Updated','num']];
+  function td(text,cls){
+    const c=h('td',cls?{class:cls}:null);
+    if(text===''){ c.append(h('span',{class:'muted',text:'—'})); } else c.textContent=text;
+    return c;
+  }
+  function detailRow(r){
+    const dl=h('dl',{class:'d'});
+    COLS.forEach((cname,i)=>{
+      const v=r[i]; const dd=h('dd');
+      if(v===''){ dd.className='muted'; dd.textContent='— (blank in sheet)'; }
+      else if(cname==='Source') dd.append(linkified(v));
+      else dd.textContent=v;
+      dl.append(h('dt',{text:cname}),dd);
+    });
+    return h('tr',{class:'detail'},h('td',{colspan:String(TCOLS.length)},dl));
+  }
+  function renderTable(){
+    const list=sortRows(ROWS.filter(matches));
+    const tb=$('tbody'); tb.textContent='';
+    const frag=document.createDocumentFragment();
+    list.forEach(r=>{
+      const tr=h('tr',{class:'row'});
+      TCOLS.forEach(([name,,cls])=>{
+        if(name==='How sure'){ const v=col(r,name); const g=h('td'); g.append(h('span',{class:'badge b-'+sureClass(v),text:sureLabel(v)})); tr.append(g); }
+        else tr.append(td(col(r,name),cls));
+      });
+      tr.addEventListener('click',()=>{
+        const next=tr.nextSibling;
+        if(next && next.classList && next.classList.contains('detail')){ next.remove(); tr.classList.remove('open'); }
+        else { tr.after(detailRow(r)); tr.classList.add('open'); }
+      });
+      frag.append(tr);
+    });
+    tb.append(frag);
+    $('empty').hidden=list.length>0;
+    const cnt=$('count'); cnt.textContent=''; cnt.append('Showing ',h('b',{text:String(list.length)}),` of ${N} companies`);
+    renderChips(); renderKpiActive();
+  }
+  function renderChips(){
+    const box=$('chips'); box.textContent='';
+    [['q','Search'],['layer','Layer'],['type','Type'],['kind','Kind'],['event','Event'],['sure','How sure'],['country','Country'],['level','Level']].forEach(([k,label])=>{
+      if(!state[k]) return;
+      let val=state[k]; if(k==='sure') val=sureLabel(val);
+      const b=h('button',{class:'chip',type:'button',text:`${label}: ${val} ×`});
+      b.addEventListener('click',()=>{ state[k]=''; syncControls(); renderTable(); });
+      box.append(b);
+    });
+  }
+  function buildKpis(){
+    const box=$('kpis'); box.textContent='';
+    const rowStatic=h('div',{class:'kpi-row'}), rowClick=h('div',{class:'kpi-row clicks'}); box.append(rowStatic,rowClick);
+    const sm=uniq('How sure'), em=multi('What happened');
+    const items=[
+      {n:N,l:'Total companies'},
+      {n:uniq('Layer').size,l:'Layers covered'},
+      {n:uniq('Type').size,l:'Company types'},
+      {n:sm.get('Confirmed')||0,l:'Confirmed news',k:'sure',v:'Confirmed',c:'k-growing'},
+      {n:sm.get('Planned')||0,l:'Planned',k:'sure',v:'Planned',c:'k-stable'},
+      {n:sm.get('Unconfirmed')||0,l:'Unconfirmed',k:'sure',v:'Unconfirmed',c:'k-erp'},
+      {n:sm.get('-')||0,l:'No recent event',k:'sure',v:'-',c:'k-unclear'},
+      {n:em.get('New data center or capacity')||0,l:'New capacity news',k:'event',v:'New data center or capacity',c:'k-noerp'},
+      {n:em.get('Delay or problem')||0,l:'Delays or problems',k:'event',v:'Delay or problem',c:'k-struggling'}
+    ];
+    items.forEach(it=>{
+      const el=h(it.k?'button':'div',{class:'kpi '+(it.k?'click '+it.c:'static')});
+      if(it.k){ el.type='button'; el.dataset.k=it.k; el.dataset.v=it.v; }
+      el.append(h('div',{class:'n',text:String(it.n)}),h('div',{class:'l',text:it.l}));
+      if(it.k) el.addEventListener('click',()=>{ state[it.k]=state[it.k]===it.v?'':it.v; syncControls(); renderTable(); });
+      (it.k?rowClick:rowStatic).append(el);
+    });
+  }
+  function renderKpiActive(){ root.querySelectorAll('.kpi[data-k]').forEach(el=>el.classList.toggle('active',state[el.dataset.k]===el.dataset.v)); }
+  function syncControls(){
+    $('q').value=state.q; $('f-layer').value=state.layer; $('f-type').value=state.type; $('f-kind').value=state.kind; $('f-event').value=state.event;
+    $('f-sure').value=state.sure; $('f-country').value=state.country; $('f-level').value=state.level; $('f-sort').value=state.sort;
+  }
+  function initCompanies(){
+    const tr=h('tr'); TCOLS.forEach(c=>tr.append(h('th',{text:c[1]}))); $('thead').append(tr);
+    buildFilters(); buildKpis();
+    let t;
+    $('q').addEventListener('input',e=>{ clearTimeout(t); t=setTimeout(()=>{ state.q=e.target.value.trim(); renderTable(); },120); });
+    [['f-layer','layer'],['f-type','type'],['f-kind','kind'],['f-event','event'],['f-sure','sure'],['f-country','country'],['f-level','level'],['f-sort','sort']].forEach(([id,k])=>{
+      $(id).addEventListener('change',e=>{ state[k]=e.target.value; renderTable(); });
+    });
+    $('toggleFilters').addEventListener('click',e=>{ const open=$('filters').classList.toggle('open'); e.currentTarget.classList.toggle('on',open); e.currentTarget.setAttribute('aria-expanded',String(open)); });
+    $('reset').addEventListener('click',()=>{ Object.assign(state,{q:'',layer:'',type:'',kind:'',event:'',sure:'',country:'',level:'',sort:'sno'}); syncControls(); renderTable(); });
+    $('pill-companies').textContent=String(N);
+    renderTable();
+  }
+  function jumpTo(k,v){
+    Object.assign(state,{q:'',layer:'',type:'',kind:'',event:'',sure:'',country:'',level:''});
+    state[k]=v; syncControls(); renderTable(); show('companies',true); window.scrollTo(0,0);
+  }
+
+  /* ===== Analytics ===== */
+  function buildAnalytics(){
+    const rootA=$('view-analytics'); rootA.textContent='';
+    const doc=h('div',{class:'doc'});
+    const layers=[...uniq('Layer').entries()].sort((a,b)=>layerNum(a[0])-layerNum(b[0]));
+    const biggest=[...layers].sort((a,b)=>b[1]-a[1])[0];
+    const sm=uniq('How sure');
+    doc.append(h('div',{class:'stats'},
+      h('div',{class:'stat'},h('div',{class:'n',text:String(N)}),h('div',{class:'l',text:'Total companies'})),
+      h('div',{class:'stat'},h('div',{class:'n',text:pct(biggest[1],N)}),h('div',{class:'l',text:`In the largest layer: ${biggest[0]}`})),
+      h('div',{class:'stat'},h('div',{class:'n',text:String(uniq('Type').size)}),h('div',{class:'l',text:'Company types'})),
+      h('div',{class:'stat'},h('div',{class:'n',text:String(sm.get('Confirmed')||0)}),h('div',{class:'l',text:'Companies with confirmed news'}))
+    ));
+
+    // 1. layers
+    const s1=section('Share of companies by layer of the AI chain','Number of companies in each of the five layers. Click a bar to see those companies.');
+    const lItems=layers.map(([l,n])=>({label:l,value:n,color:layerColor(l)}));
+    s1.append(h('div',{class:'two'},bars(layers.map(([l,n])=>[l,n,l]),N,v=>jumpTo('layer',v),l=>layerColor(l)),h('div',{class:'donutcol'},donut(lItems,N,String(N),'companies'),legend(lItems,N))));
+    const det=h('details',null,h('summary',{text:'Show layer numbers as a table'}));
+    const trows=layers.map(([l,n])=>{
+      const rs=ROWS.filter(r=>col(r,'Layer')===l);
+      return h('tr',null,h('td',{text:l}),h('td',{text:String(n)}),h('td',{text:pct(n,N)}),SURE_ORDER.map(g=>h('td',{text:String(rs.filter(r=>col(r,'How sure')===g).length)})));
+    });
+    det.append(h('div',{class:'scroll'},h('table',{class:'plain'},h('thead',null,h('tr',null,['Layer','Companies','Share','Confirmed','Planned','Unconfirmed','No recent event'].map(t=>h('th',{text:t})))),h('tbody',null,trows))));
+    s1.append(det); doc.append(s1);
+
+    // 2. confidence by layer
+    const s2=section('How sure is the latest news, layer by layer','Each bar is one layer, scaled to 100% and split by how sure the latest news is. The number inside a coloured block is a company count, and hovering a block shows the exact figures.');
+    const sl=h('div',{class:'sublegend'});
+    sureList().forEach(g=>{ const i=h('i'); i.style.background=sureCol(g); sl.append(h('span',null,i,sureLabel(g))); });
+    s2.append(sl);
+    const wrap2=h('div',{class:'bars'});
+    layers.forEach(([l,n])=>{
+      const rs=ROWS.filter(r=>col(r,'Layer')===l);
+      const row=h('button',{class:'brow click',type:'button'});
+      row.addEventListener('click',()=>jumpTo('layer',l));
+      const track=h('div',{class:'track tall'});
+      sureList().forEach(g=>{
+        const k=rs.filter(r=>col(r,'How sure')===g).length; if(!k) return;
+        const seg=h('div',{class:'seg','data-tip':`${l} · ${sureLabel(g)}: ${k} of ${n} companies (${pct(k,n)})`});
+        seg.style.width=(k/n*100)+'%'; seg.style.background=sureCol(g); seg.style.color=sureTxt(g);
+        if(k/n>=0.07) seg.textContent=String(k);
+        track.append(seg);
+      });
+      row.append(h('span',{class:'bl',text:l,title:l}),track,h('span',{class:'bv',text:`${n} companies`}));
+      wrap2.append(row);
+    });
+    const sItems=sureList().map(g=>({label:sureLabel(g),value:sm.get(g)||0,color:sureCol(g)}));
+    s2.append(h('div',{class:'two'},wrap2,h('div',{class:'donutcol'},donut(sItems,N,String(N),'companies'),legend(sItems,N))));
+    doc.append(s2);
+
+    // 3. company kind
+    const kinds=sortedEntries(uniq('Company kind'),true);
+    const s3=section('Company kind','Who the companies are. Click a bar to see them.');
+    const kItems=kinds.map(([k,n],i)=>({label:k,value:n,color:PALETTE[i%PALETTE.length]}));
+    s3.append(h('div',{class:'two'},bars(kinds.map(([k,n])=>[k,n,k]),N,v=>jumpTo('kind',v),(l,k)=>PALETTE[kinds.findIndex(x=>x[0]===k)%PALETTE.length]),h('div',{class:'donutcol'},donut(kItems,N,String(N),'companies'),legend(kItems,N))));
+    doc.append(s3);
+
+    // 4. type
+    const types=sortedEntries(uniq('Type'),true);
+    const typeLayer={}; ROWS.forEach(r=>{ typeLayer[col(r,'Type')]=col(r,'Layer'); });
+    const s4=section('Companies by type',`What each company mainly makes or does. Bar colour shows the layer the type belongs to (same colours as the layer chart above). Click a bar to see those companies.`);
+    s4.append(bars(types.map(([t,n])=>[t,n,t]),N,v=>jumpTo('type',v),(l,k)=>layerColor(typeLayer[k])));
+    doc.append(s4);
+
+    // 5. events
+    const ev=sortedEntries(multi('What happened'),true);
+    const s5=section('What happened recently','The kind of recent event found for each company. A company can have more than one event, so these shares can add up to more than 100%. Click a bar to see those companies.');
+    s5.append(bars(ev.map(([t,n])=>[t,n,t]),N,v=>jumpTo('event',v)));
+    doc.append(s5);
+
+    // 6. country + city
+    const countries=sortedEntries(multi('Country'),true);
+    const cEntries=countries.filter(c=>c[0]!=='Not stated').slice(0,12), restCt=countries.slice(12).filter(c=>c[0]!=='Not stated');
+    const s6=section('Countries','Where the companies’ main work happens. A company that works in several countries counts once in each. Click a bar to see those companies.');
+    s6.append(bars(cEntries.map(([t,n])=>[t,n,t]),N,v=>jumpTo('country',v)));
+    if(restCt.length) s6.append(h('p',{class:'fine',text:`${restCt.length} more country values are not shown here. Use the Country filter on the Companies tab to see them.`}));
+    doc.append(s6);
+    const cityMap=uniq('City'); const noCity=(cityMap.get('Multiple')||0)+(cityMap.get('Not stated')||0)+(cityMap.get('')||0);
+    ['Multiple','Not stated',''].forEach(k=>cityMap.delete(k));
+    const cities=sortedEntries(cityMap,true);
+    const s7=section('Top cities',`Top cities among the ${N-noCity} companies that name a single city.`);
+    s7.append(bars(cities.slice(0,12).map(([t,n])=>[t,n,null]),N));
+    s7.append(h('p',{class:'fine',text:`${noCity} companies list several cities or none, and are not included here.`}));
+    doc.append(s7);
+
+    // 7. level
+    const lv=sortedEntries(uniq('Supply chain level'),false);
+    const s8=section('Position in the supply chain','Level 0 is the buyer. Higher levels sell further down the chain. “Funds the chain” is an investor or lender. Click a bar to see those companies.');
+    s8.append(bars(lv.map(([t,n])=>[t,n,t]),N,v=>jumpTo('level',v)));
+    doc.append(s8);
+
+    doc.append(h('p',{class:'fine',text:'Every number on this tab is counted directly from the Companies tab of the sheet. Percentages are rounded to one decimal place.'}));
+    rootA.append(doc);
+    const tip=document.getElementById('tip');
+    function place(e){
+      const t=e.target.closest&&e.target.closest('[data-tip]');
+      if(!t){ tip.style.display='none'; return; }
+      tip.textContent=t.getAttribute('data-tip'); tip.style.display='block';
+      const x=Math.min(e.clientX+14,window.innerWidth-tip.offsetWidth-8);
+      tip.style.left=Math.max(8,x)+'px'; tip.style.top=(e.clientY+16)+'px';
+    }
+    rootA.addEventListener('mouseover',place); rootA.addEventListener('mousemove',place);
+    rootA.addEventListener('mouseleave',()=>{ tip.style.display='none'; });
+    rootA.addEventListener('click',e=>{ place(e); setTimeout(()=>{ tip.style.display='none'; },1600); });
+  }
+
+  /* ===== README ===== */
+  function buildReadme(){
+    const rootR=$('view-readme'); rootR.textContent='';
+    const doc=h('div',{class:'doc'});
+    const about=section('About this tab');
+    about.append(
+      h('p',{text:`This tab lists the ${N} companies marked “${M.label}” in the file ${CONFIG.dataFile}, which was made from the Google Sheet “${SHEET_TITLE}”. Every value is shown as it is written in the file. Nothing here has been added, re-scored or re-categorised.`}),
+      keyMeaning('Tab',M.tab)?h('p',{text:`The sheet’s own rule for this region: ${keyMeaning('Tab',M.tab)}`}):null,
+      h('p',{text:`Use the Companies tab to search and filter. Click any company row to see all ${COLS.length-1} fields recorded for it.`})
+    );
+    doc.append(about);
+
+    const dataLayers=[...uniq('Layer').keys()].filter(Boolean).sort((a,b)=>layerNum(a)-layerNum(b));
+    const layers=keyRows('Layer').length?keyRows('Layer'):dataLayers.map(l=>[l,'Layer','']);
+    const ls=section(`The ${layers.length} layers of the AI chain`,'Every company sits in exactly one layer.'+(keyRows('Layer').length?' The descriptions are the sheet’s own, from key.csv.':''));
+    const grid=h('div',{class:'gcards'});
+    layers.forEach(([name,,meaning])=>{
+      const rows=ROWS.filter(r=>col(r,'Layer')===name);
+      const card=h('div',{class:'gcard'});
+      card.style.setProperty('--kc',layerColor(name)); card.style.setProperty('--kc-bg','var(--surface)');
+      card.append(
+        h('div',{class:'gh'},h('span',{class:'gt',text:name}),h('span',{class:'gn',text:`${rows.length} companies`})),
+        meaning?h('p',{text:meaning}):null
+      );
+      const ex=h('div',{class:'ex'},h('b',{text:'Examples from the sheet'}));
+      rows.slice(0,3).forEach(r=>ex.append(h('div',null,h('b',{text:col(r,'Company')}),col(r,'What they make or do'))));
+      if(rows.length) card.append(ex);
+      const det=h('details',null,h('summary',{text:`Show all ${rows.length} companies in ${name}`}));
+      const list=h('div',{class:'biglist'});
+      rows.forEach(r=>list.append(h('div',{class:'it'},h('b',{text:col(r,'Company')}),' — ',col(r,'Type'))));
+      det.append(list); card.append(det); grid.append(card);
+    });
+    ls.append(grid); doc.append(ls);
+
+    if(keyRows('Type').length){
+    const tm=section('What each company type means','Plain meanings are from key.csv, with the number of companies of each type here.');
+    const typeCount=uniq('Type');
+    tm.append(h('div',{class:'scroll'},h('table',{class:'plain'},h('thead',null,h('tr',null,['Type','Companies here','Plain meaning (from the sheet)'].map(t=>h('th',{text:t})))),
+      h('tbody',null,keyRows('Type').map(([name,,meaning])=>h('tr',null,h('td',{text:name}),h('td',{text:String(typeCount.get(name)||0)}),h('td',{class:'wrapcell',text:meaning})))))));
+    doc.append(tm);
+    }
+
+    const defs=section('How sure, what happened, supply chain level and company kind','What the labels mean, as defined in key.csv.');
+    [['How sure','How sure'],['What happened','What happened'],['Supply chain level','Supply chain level'],['Company kind','Company kind']].forEach(([kind,title])=>{
+      if(!keyRows(kind).length) return;
+      defs.append(h('h3',{text:title,style:'margin-top:14px'}));
+      const cnt=kind==='How sure'?uniq('How sure'):kind==='What happened'?multi('What happened'):kind==='Supply chain level'?uniq('Supply chain level'):uniq('Company kind');
+      defs.append(h('div',{class:'scroll'},h('table',{class:'plain'},h('thead',null,h('tr',null,['Value','Companies here','Meaning'].map(t=>h('th',{text:t})))),
+        h('tbody',null,keyRows(kind).map(([name,,meaning])=>{
+          const k=name==='Level 4 or lower'?null:name;
+          return h('tr',null,h('td',{text:name==='-'?'- (shown as “No recent event”)':name}),h('td',{text:String(cnt.get(name)||0)}),h('td',{class:'wrapcell',text:meaning}));
+        })))));
+    });
+    if(defs.querySelector('h3')) doc.append(defs);
+
+    if(keyRows('Column').length){
+    const cg=section('Column guide',`The ${COLS.length-1} fields recorded for every company, in the order they appear in the sheet.`);
+    cg.append(h('div',{class:'scroll'},h('table',{class:'plain'},h('thead',null,h('tr',null,h('th',{text:'Column'}),h('th',{text:'What it contains (from the sheet)'}))),
+      h('tbody',null,keyRows('Column').map(([name,,meaning])=>h('tr',null,h('td',{text:name}),h('td',{class:'wrapcell',text:meaning})))))));
+    doc.append(cg);
+    }
+    rootR.append(doc);
+  }
+
+  /* ===== Sources ===== */
+  function buildSources(){
+    const rootS=$('view-sources'); rootS.textContent='';
+    const doc=h('div',{class:'doc'});
+    const s1=section('Where this data comes from',`All information in this tab comes from the file ${CONFIG.dataFile}, made from one Google Sheet. This page only displays it.`);
+    s1.append(h('dl',{class:'kv'},
+      h('dt',{text:'Google Sheet'}),h('dd',null,SHEET_URL?aLink(SHEET_URL,SHEET_TITLE):document.createTextNode(SHEET_TITLE),SHEET_URL?' (access depends on your Google account)':''),
+      h('dt',{text:`Region “${M.label}”`}),h('dd',{text:`${N} companies, ${COLS.length-1} columns. This is the list shown in the Companies tab.`}),
+      h('dt',{text:'Newest update in the data'}),h('dd',{text:DATA_DATE||'—'})
+    ));
+    doc.append(s1);
+
+    const urlRows=ROWS.filter(r=>/https?:\/\//.test(col(r,'Source')));
+    const s2=section('Sources behind each latest update',`${urlRows.length} of ${N} companies have at least one web link in the Source column. Links are grouped by website.`);
+    const byHost=new Map();
+    urlRows.forEach(r=>{ (col(r,'Source').match(/https?:\/\/[^\s;]+/g)||[]).forEach(u=>{ const hn=host(u); if(!hn) return; if(!byHost.has(hn)) byHost.set(hn,[]); byHost.get(hn).push([r,u]); }); });
+    [...byHost.entries()].sort((a,b)=>b[1].length-a[1].length||a[0].localeCompare(b[0])).forEach(([hn,list])=>{
+      const det=h('details',null,h('summary',{text:`${hn} — ${list.length} ${list.length===1?'link':'links'}`}));
+      const box=h('div',{class:'biglist'});
+      list.forEach(([r,u])=>box.append(h('div',{class:'it'},h('b',{text:col(r,'Company')}),' (',sureLabel(col(r,'How sure')),', ',col(r,'Last updated'),') · ',aLink(u,'open source'))));
+      det.append(box); s2.append(det);
+    });
+    const noUrl=ROWS.filter(r=>!/https?:\/\//.test(col(r,'Source')));
+    s2.append(h('p',{class:'lead',text:`The other ${noUrl.length} companies have no web link in the Source column (the sheet cites a publication or says no source was found).`}));
+    doc.append(s2);
+
+    const s3=section('How sure the latest news is','The values recorded in the How sure column, with the number of companies for each.');
+    const chips=h('div',{class:'chips2'});
+    [...uniq('How sure').entries()].sort((a,b)=>sureList().indexOf(a[0])-sureList().indexOf(b[0])).forEach(([k,n])=>chips.append(h('span',null,sureLabel(k),h('b',{text:String(n)}))));
+    s3.append(chips); doc.append(s3);
+
+    const s5=section('How recent is the evidence','Last updated dates as written in the sheet, with the number of companies for each.');
+    const c5=h('div',{class:'chips2'});
+    [...uniq('Last updated').entries()].sort((a,b)=>b[0].localeCompare(a[0])).forEach(([k,n])=>c5.append(h('span',null,k||'(blank)',h('b',{text:String(n)}))));
+    s5.append(c5); doc.append(s5);
+
+    const s6=section('Good to know');
+    s6.append(h('ul',null,
+      h('li',{text:`This page shows ${CONFIG.dataFile} exactly as it is. It does not check the cited sources, and it has no information beyond that file.`}),
+      h('li',{text:'To verify any update, open the company row on the Companies tab and follow its Source links.'}),
+      h('li',{text:`To update the page, replace ${CONFIG.dataFile} on GitHub with a new export of the sheet. Nothing else needs to change.`}),
+      h('li',{text:'Regions are kept strictly separate: each company has exactly one Region value in the file.'})
+    ));
+    doc.append(s6); rootS.append(doc);
+  }
+
+  /* ===== tabs inside the market ===== */
+  const views=['companies','analytics','readme','sources'];
+  let current='companies';
+  function show(view,push){
+    if(!views.includes(view)) view='companies';
+    current=view;
+    views.forEach(v=>{ $('view-'+v).hidden=v!==view; });
+    root.querySelectorAll('.tabs .tab').forEach(b=>{ const on=b.dataset.view===view; b.classList.toggle('active',on); b.setAttribute('aria-selected',String(on)); });
+    if(push) setHash(M.key+(view==='companies'?'':'-'+view));
+  }
+  root.querySelectorAll('.tabs .tab').forEach(b=>b.addEventListener('click',()=>{ show(b.dataset.view,true); window.scrollTo(0,0); }));
+  initCompanies(); buildAnalytics(); buildReadme(); buildSources();
+  return {show,views,get current(){return current;}};
+}
+
+/* ---------- reading data.csv ---------- */
+function parseCSV(text){
+  if(text.charCodeAt(0)===0xFEFF) text=text.slice(1);
+  const first=text.split('\n')[0]||'';
+  const count=ch=>first.split(ch).length-1;
+  const delim=count('\t')>count(',')&&count('\t')>count(';')?'\t':(count(';')>count(',')?';':',');
+  const rows=[]; let row=[], field='', q=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(q){
+      if(c==='"'){ if(text[i+1]==='"'){ field+='"'; i++; } else q=false; }
+      else field+=c;
+    } else if(c==='"'){ q=true; }
+    else if(c===delim){ row.push(field); field=''; }
+    else if(c==='\r'){ /* ignore */ }
+    else if(c==='\n'){ row.push(field); rows.push(row); row=[]; field=''; }
+    else field+=c;
+  }
+  if(field!==''||row.length){ row.push(field); rows.push(row); }
+  return rows.filter(r=>r.some(c=>String(c).trim()!==''));
+}
+const EXPECTED=['Region','S.No','Company','Layer','Type','Supply chain level','Company kind','HQ','Country','City','Where they operate','What they make or do','Sells to','What happened','How sure','Latest update','Source','Last updated'];
+function buildData(rows){
+  if(rows.length<2) throw new Error('The data file has no company rows.');
+  const norm=s=>String(s).replace(/\s+/g,' ').trim().toLowerCase();
+  const head=rows[0].map(c=>{ const n=norm(c); return EXPECTED.find(e=>norm(e)===n)||String(c).replace(/\s+/g,' ').trim(); });
+  const missing=['Region','Company','Layer'].filter(c=>!head.includes(c));
+  if(missing.length) throw new Error('These column names are missing in the first row of the data file: '+missing.join(', ')+'. Column names must match the original ones exactly.');
+  const ri=head.indexOf('Region'), ci=head.indexOf('Company'), si=head.indexOf('How sure'), ui=head.indexOf('Last updated');
+  const by=new Map();
+  rows.slice(1).forEach(r=>{
+    const cells=head.map((_,i)=>String(r[i]==null?'':r[i]).trim());
+    if(!cells[ci]) return;
+    if(si>=0&&cells[si]==='') cells[si]='-';
+    const region=cells[ri]||'Not stated';
+    if(!by.has(region)) by.set(region,[]);
+    by.get(region).push(cells);
+    if(ui>=0&&/^\d{4}-\d{2}-\d{2}/.test(cells[ui])&&cells[ui]>DATA_DATE) DATA_DATE=cells[ui].slice(0,10);
+  });
+  if(!by.size) throw new Error('No companies were found in the data file.');
+  const regions=[...by.keys()].sort((a,b)=>(a==='India'?-1:b==='India'?1:0));
+  const data={};
+  regions.forEach(label=>{
+    const key=(label.toLowerCase().replace(/[^a-z0-9]/g,'')||'region');
+    data[key]={key,label,tab:label,cols:head,rows:by.get(label)};
+  });
+  return data;
+}
+function setHash(name){ try{ history.replaceState(null,'','#'+name); }catch(e){ location.hash=name; } }
+const instances={};
+function showMarket(key,view,push){
+  if(!instances[key]) key=Object.keys(instances)[0];
+  Object.keys(instances).forEach(k=>{
+    document.getElementById('market-'+k).hidden=k!==key;
+    const b=document.getElementById('mkt-'+k); b.classList.toggle('active',k===key); b.setAttribute('aria-selected',String(k===key));
+  });
+  instances[key].show(view||'companies',false);
+  if(push) setHash(key+((view&&view!=='companies')?'-'+view:''));
+}
+function routeFromHash(){
+  const parts=(location.hash||'').replace('#','').split('-');
+  showMarket(parts[0],parts[1]||'companies',false);
+}
+function showProblem(err){
+  const box=document.getElementById('app');
+  box.textContent='';
+  const onDisk=location.protocol==='file:';
+  const card=h('section',{class:'card'},
+    h('h2',{text:onDisk?'Open this page from its web link':'The data could not be loaded'}),
+    h('p',{text:onDisk
+      ? 'You opened this page by double-clicking the file on your computer. Browsers do not allow a page to read data.csv that way. Open the page from your GitHub Pages link instead (see the README for how to get it).'
+      : String(err&&err.message||err)}),
+    onDisk?null:h('p',{class:'lead',text:`Check that ${CONFIG.dataFile} is in the same folder as index.html, that its name is exactly ${CONFIG.dataFile}, and that the first row holds the column names.`})
+  );
+  box.append(card);
+}
+async function fetchText(url,optional){
+  const res=await fetch(url,{cache:'no-cache'});
+  if(!res.ok){ if(optional) return ''; throw new Error(`Could not find ${url} (error ${res.status}).`); }
+  return res.text();
+}
+(async function start(){
+  try{
+    document.body.append(h('div',{class:'tip',id:'tip'}));
+    const text=await fetchText(CONFIG.dataFile,false);
+    DATA=buildData(parseCSV(text));
+    try{ const k=await fetchText(CONFIG.keyFile,true); if(k){ const kr=parseCSV(k); KEY=kr.slice(1).map(r=>[0,1,2].map(i=>String(r[i]||'').trim())).filter(r=>r[0]); } }catch(e){ KEY=[]; }
+    Object.keys(DATA).forEach(k=>{ MARKETS[k]=DATA[k]; });
+    const app=document.getElementById('app'); app.textContent='';
+    const bar=h('div',{class:'markets',role:'tablist',id:'markets'}); app.append(bar);
+    Object.keys(MARKETS).forEach(k=>app.append(h('div',{id:'market-'+k,hidden:'hidden'})));
+    Object.keys(MARKETS).forEach(k=>{
+      const M=MARKETS[k];
+      const b=h('button',{class:'mkt',role:'tab',id:'mkt-'+k},M.label,h('span',{class:'pill',text:String(M.rows.length)}));
+      b.addEventListener('click',()=>{ showMarket(k,'companies',true); window.scrollTo(0,0); });
+      bar.append(b);
+      instances[k]=createMarket(M);
+    });
+    window.addEventListener('hashchange',routeFromHash);
+    routeFromHash();
+  }catch(err){ showProblem(err); }
+})();
+
+</script>
+</body>
+</html>

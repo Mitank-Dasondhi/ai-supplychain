@@ -1,0 +1,74 @@
+Item,Kind,Plain meaning
+Chip maker,Type,"Makes processors, CPUs, GPUs or AI accelerators. Layer is 2 - Chips."
+Memory and storage chip maker,Type,"Makes RAM, flash or SSD chips. Layer is 2 - Chips."
+"Chip packaging, materials and equipment",Type,"Does assembly and testing, or makes wafers, gases or chip-making machines. Layer is 2 - Chips."
+Server maker,Type,Makes servers and storage systems. Layer is 3 - Infrastructure.
+Rack and enclosure maker,Type,"Makes racks, cabinets or metal enclosures. Layer is 3 - Infrastructure."
+Circuit boards and electronic parts,Type,"Makes printed circuit boards, power supply units, connectors or sensors. Layer is 3 - Infrastructure."
+"Network, optical and cable",Type,"Makes switches, fibre, cables or transceivers. Layer is 3 - Infrastructure."
+Cooling system maker,Type,"Makes air, liquid or immersion cooling units. Layer is 3 - Infrastructure."
+Cooling parts and coolant supplier,Type,"Makes fans, pumps, heat sinks, radiators, metal mesh, filters or coolant chemicals. Layer is 3 - Infrastructure."
+Power equipment maker,Type,"Makes UPS units, batteries, generators, transformers, switchgear or busbars. Layer is 3 - Infrastructure."
+Power producer or utility,Type,Sells electricity. Layer is 1 - Energy.
+Builder and electrical contractor,Type,"Does construction, wiring, fire safety or civil work. Layer is 3 - Infrastructure."
+Land and industrial parks,Type,Sells or leases land for data centers. Layer is 3 - Infrastructure.
+Runs data centers,Type,Runs data center buildings and rents space. Layer is 3 - Infrastructure.
+Building data centers,Type,"Planning or building a data center, not running it yet. Layer is 3 - Infrastructure."
+GPU cloud,Type,Rents out AI chips. Layer is 3 - Infrastructure.
+Big cloud company,Type,"A global cloud firm such as Microsoft, Google, Amazon, Meta or Oracle. Layer is 3 - Infrastructure."
+Security and facility services,Type,"Guards, CCTV, cleaning, staffing or day-to-day site maintenance. Layer is 3 - Infrastructure."
+AI model builder,Type,Builds AI models. Layer is 4 - Models.
+AI software and platform,Type,Makes tools and platforms for building or running AI. Layer is 4 - Models.
+AI application company,Type,Makes AI products for businesses or people. Layer is 5 - Applications.
+Investor or lender,Type,Puts money in or lends. Place in the layer they fund most.
+Building materials supplier,Type,"Makes building materials used in data-center construction, such as wall panels. Used when no listed Type fits."
+Robotics (humanoids),Type,Makes humanoid robots that run on AI. Used when no listed Type fits.
+S.No,Column,A running number shared across the India and Outside India tabs. New companies are added at the bottom of the matching tab with the next number.
+Company,Column,The company's usual name.
+Layer,Column,"Which part of the chain the company sits in, from energy to applications."
+Type,Column,"What the company mainly makes or does, using the list above."
+Supply chain level,Column,How close the company is to the buyer. See the level values below.
+Company kind,Column,The kind of company. See the kind values below.
+HQ,Column,City and country of the head office. Write Not stated if this is not known.
+Country,Column,Country where the company's main work for India or Southeast Asia happens.
+City,Column,City where that work happens. Write Multiple if there are several. Write Not stated if unknown. Never guess.
+Where they operate,Column,A short note on sites or markets.
+What they make or do,Column,A short plain description of the company's work in this chain.
+Sells to,Column,The named customer one step up the chain. Write - for Level 0 (buyer). Write Not found if the customer is not named.
+What happened,Column,The kind of recent event. Use the event words below. Join two with a comma if both apply.
+How sure,Column,How sure the recent event is. Meanings are below.
+Latest update,Column,"A short note on the latest event, with the date and source."
+Source,Column,The source link or citation for the latest update.
+Last updated,Column,"The date this row was last changed, as YYYY-MM-DD."
+Level 0 (buyer),Supply chain level,"The buyer: a data center company, GPU cloud, big cloud company, or an AI company that uses the chips. Sells to is -."
+Level 1,Supply chain level,Sells directly to a buyer.
+Level 2,Supply chain level,Sells to a Level 1 company.
+Level 3,Supply chain level,Sells to a Level 2 company.
+Level 4 or lower,Supply chain level,Sells further down the chain than Level 3.
+Funds the chain,Supply chain level,An investor or lender. They are not a seller in the chain.
+MNC,Company kind,"A global company that has an India unit, or a large foreign company in this sheet."
+Indian large company,Company kind,"A large Indian company, often listed or part of a large group."
+Startup,Company kind,"A young company, often venture-backed."
+Government company,Company kind,Owned or tightly linked to a government.
+Small or mid-size company,Company kind,A smaller or mid-size firm that is not a startup and not a large listed group.
+Joint venture,Company kind,A company or project owned by two or more partners.
+Raised money,What happened,"The company took in funding, a loan or listed shares."
+Sale or purchase,What happened,"A sale, purchase, lease, contract or similar deal."
+New data center or capacity,What happened,"A new site, more power or more computing capacity."
+New product,What happened,A new product or service was launched.
+Hiring,What happened,The company is hiring people.
+Layoffs,What happened,The company is cutting jobs.
+Delay or problem,What happened,"A delay, dispute, missed target or other problem."
+Nothing new,What happened,No recent event was found.
+Confirmed,How sure,"It has happened or is running, and a reliable source says so."
+Planned,How sure,"Announced or agreed in principle, but not built, signed or closed yet."
+Unconfirmed,How sure,"A media report from unnamed sources, or only the company or a directory says so."
+-,How sure,There is no recent event.
+1 - Energy,Layer,"Companies that make or sell electricity to AI data centers (solar, wind, hydro, nuclear, gas, grid, battery storage)."
+2 - Chips,Layer,"Processors, GPUs, memory and storage chips, chip packaging and testing, chip materials and equipment."
+3 - Infrastructure,Layer,"Data centers, GPU cloud, servers, racks, cooling, power equipment inside the data center, networks, cables, building work, land, security and other services."
+4 - Models,Layer,AI models and AI software platforms.
+5 - Applications,Layer,AI products used by businesses or people.
+India,Tab,"Companies with a sourced presence in India: an Indian entity, office, plant, data center, project, customer contract, MoU or investment in India. For foreign companies on this tab, Country is India and City is their India location (or Multiple or Not stated). The India link is noted in Where they operate and its source in Source."
+Outside India,Tab,"All other companies, mostly in Southeast Asia, plus global companies with no sourced India link yet. If a sourced India link appears later, move the row to the India tab and keep its S.No."
+Adding companies,Rule,Every company is in exactly one tab. A new company goes at the bottom of the matching tab and takes the next S.No after the highest S.No across both tabs. S.No is never reused or renumbered.
