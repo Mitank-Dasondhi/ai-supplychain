@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>D2C Commerce India and NA</title>
+<title>AI Impact Tracker: India and Outside India</title>
 <style>
 /* =====================================================================
    1. DESIGN TOKENS  (the only place colours, fonts and sizes are defined)
@@ -221,83 +221,79 @@ svg.donut circle{cursor:default}
 }
 
 /* =====================================================================
-   11. EXTRA RULES THIS SITE NEEDS (colour variables from the block above only)
+   11. EXTRA RULES THIS SITE NEEDS (colour variables only)
    ===================================================================== */
-.k-erp{--kc-bg:var(--blue-bg);--kc-t:var(--blue-t);--kc-f:var(--blue-f)}
-.k-noerp{--kc-bg:var(--gray-bg);--kc-t:var(--gray-t);--kc-f:var(--gray-f)}
-.note{margin:10px 0 0;padding:10px 12px;border-radius:var(--radius-md);background:var(--yellow-bg);border:1px solid var(--yellow-f);font-size:var(--fs-small)}
-.card ul{margin:6px 0;padding-left:18px}
-.gcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px;margin-top:12px}
-.gcard{border:1px solid var(--kc-f);border-radius:var(--radius-md);padding:12px 14px;background:var(--kc-bg)}
-.gcard.g-Growing{--kc-bg:var(--green-bg);--kc-t:var(--green-t);--kc-f:var(--green-f)}
-.gcard.g-Stable{--kc-bg:var(--yellow-bg);--kc-t:var(--yellow-t);--kc-f:var(--yellow-f)}
-.gcard.g-Struggling{--kc-bg:var(--red-bg);--kc-t:var(--red-t);--kc-f:var(--red-f)}
-.gcard.g-Unclear{--kc-bg:var(--gray-bg);--kc-t:var(--gray-t);--kc-f:var(--gray-f)}
-.gcard .gh{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:6px}
-.gcard .gt{font-size:var(--fs-section);font-weight:700;color:var(--kc-t)}
-.gcard .gn{font-size:var(--fs-small);color:var(--text)}
-.gcard li{margin:3px 0}
-.gcard .ex{font-size:var(--fs-small);margin-top:8px;padding-top:8px;border-top:1px dashed var(--kc-f)}
-.gcard .ex b{display:block}
-.gcard .ex div{margin:4px 0}
-details{margin-top:8px}
-summary{cursor:pointer;color:var(--accent);font-size:13px}
-.biglist{margin-top:8px;max-height:340px;overflow:auto;border:1px solid var(--border);border-radius:var(--radius-md);background:var(--surface)}
-.biglist .it{padding:7px 10px;border-bottom:1px solid var(--border);font-size:var(--fs-small)}
-.biglist .it:last-child{border-bottom:0}
-table.plain{min-width:0;width:100%}
-table.plain td:first-child{white-space:nowrap;font-weight:600}
-td.wrapcell{min-width:260px}
-.scroll{overflow-x:auto}
-.chips2{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.chips2 span{padding:3px 10px;border-radius:var(--radius-pill);background:var(--gray-bg);color:var(--gray-t);font-size:var(--fs-small)}
-.chips2 span b{margin-left:6px;color:var(--blue-t)}
+.k-Confirmed{--kc-bg:var(--green-bg);--kc-t:var(--green-t);--kc-f:var(--green-f)}
+.k-Planned{--kc-bg:var(--yellow-bg);--kc-t:var(--yellow-t);--kc-f:var(--yellow-f)}
+.k-Unconfirmed{--kc-bg:var(--blue-bg);--kc-t:var(--blue-t);--kc-f:var(--blue-f)}
+.k-None{--kc-bg:var(--gray-bg);--kc-t:var(--gray-t);--kc-f:var(--gray-f)}
+.k-Capacity{--kc-bg:var(--purple-bg);--kc-t:var(--purple-t);--kc-f:var(--purple-f)}
+.k-Delay{--kc-bg:var(--red-bg);--kc-t:var(--red-t);--kc-f:var(--red-f)}
+.b-Confirmed{background:var(--green-bg);color:var(--green-t)}
+.b-Planned{background:var(--yellow-bg);color:var(--yellow-t)}
+.b-Unconfirmed{background:var(--blue-bg);color:var(--blue-t)}
+.b-None{background:var(--gray-bg);color:var(--gray-t)}
+.status .left{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.track.tall{height:20px}
+.seg{height:100%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:650;overflow:hidden}
 .sublegend{display:flex;flex-wrap:wrap;gap:12px;font-size:var(--fs-small);margin:6px 0 8px}
 .sublegend span{display:inline-flex;align-items:center;gap:6px}
 .sublegend i{width:11px;height:11px;border-radius:3px;display:inline-block}
-.track.tall{height:20px}
-.seg{display:flex;align-items:center;justify-content:center;font-size:var(--fs-small);font-weight:650;overflow:hidden}
-@media (max-width:600px){ .kpi.static{min-width:0;padding:10px 12px} .kpi.static .n{font-size:24px} }
-svg.donut text{pointer-events:none}
+details{margin-top:8px}
+summary{cursor:pointer;color:var(--accent);font-size:13px}
+.scroll{overflow-x:auto}
+table.plain{min-width:0;width:100%}
+table.plain td:first-child{white-space:nowrap;font-weight:600}
+td.wrapcell{min-width:260px}
+.biglist{margin-top:8px;max-height:340px;overflow:auto;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface)}
+.biglist .it{padding:7px 10px;border-bottom:1px solid var(--border);font-size:var(--fs-small)}
+.biglist .it:last-child{border-bottom:0}
+.biglist .it b{font-weight:600}
+.chips2{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chips2 span{padding:3px 10px;border-radius:var(--radius-pill);background:var(--gray-bg);font-size:var(--fs-small)}
+.chips2 span b{margin-left:4px;color:var(--accent)}
+.gcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px;margin-top:12px}
+.gcard{border:1px solid var(--border);border-left:5px solid var(--gray-c);border-radius:var(--radius-md);padding:12px 14px;background:var(--soft)}
+.gcard .gh{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:6px}
+.gcard .gt{font-size:var(--fs-section);font-weight:700}
+.gcard .gn{font-size:var(--fs-small);color:var(--muted)}
+.gcard .ex{font-size:var(--fs-small);margin-top:8px;padding-top:8px;border-top:1px dashed var(--border)}
+.gcard .ex b{display:block}
+.gcard .ex div{margin:4px 0}
 
 </style>
 </head>
 <body>
-<div class="wrap" id="app">
-  <h1 id="page-title">D2C Commerce India and NA</h1>
-  <div class="sub" id="page-sub"></div>
-  <div class="loading" id="loading">Loading data…</div>
-  <noscript><div class="problem"><h3>JavaScript is turned off</h3><p>This page needs JavaScript to show the data. Turn it on in your browser settings and reload.</p></div></noscript>
-  <div class="problem" id="problem" hidden></div>
-  <div id="notices" hidden></div>
-  <div class="markets" role="tablist" id="markets"></div>
+<div class="wrap">
+  <h1>AI Impact Tracker: India and Outside India</h1>
+  <div class="sub" id="topsub">Source: Google Sheet “AI Impact Tracker”.</div>
+  <div id="app"><div class="loading">Loading the data…</div></div>
 </div>
 <script>
-
-/* =====================================================================
-   SETTINGS: the words and file names you may want to change later.
-   Everything else on this page is read from the CSV data files.
-   ===================================================================== */
-const SETTINGS={
-  pageTitle:'D2C Commerce India and NA',   // big title at the top of the page
-  sheetTitle:'D2C Commerce India and NA',  // name of your Google Sheet (shown in the Sources tab)
-  sheetUrl:'',                             // optional link to your Google Sheet. Leave empty to keep the sheet private.
-  markets:[
-    { key:'india', label:'India',
-      brandsFile:'data-india.csv', trendsFile:'data-india-trends.csv',
-      brandsTab:'Brands', trendsTab:'Category trends' },
-    { key:'na', label:'North America',
-      brandsFile:'data-north-america.csv', trendsFile:'data-north-america-trends.csv',
-      brandsTab:'Brands - North America', trendsTab:'Category trends - NA' }
-  ]
+/* ===== SETTINGS you can change (everything else reads from data.csv) ===== */
+const CONFIG={
+  sheetTitle:'AI Impact Tracker',   // name shown as the source of the data
+  sheetUrl:'https://docs.google.com/spreadsheets/d/1s-iK9lUTm_CSLZl71nGRbgIfFkFj2sh-MmHSAF8Oe7M/edit',  // link on the Sources tab ('' to hide)
+  dataFile:'data.csv',              // the company list
+  keyFile:'key.csv',                // optional: plain meanings of labels (README tab)
+  pageSize:10                       // companies shown per page in the table
 };
-const SHEET_TITLE=SETTINGS.sheetTitle;
-const SHEET_URL=SETTINGS.sheetUrl;
-const NO_ERP='No signal found';
-const NO_SIGNAL_TEXT='No recent public signal found';
-const BLANK='__blank__';
-const GROWTH_ORDER=['Growing','Stable','Struggling','Unclear'];
-const gcls=v=>GROWTH_ORDER.includes(v)?v:'Unclear';
+let DATA={};      // filled from data.csv
+let KEY=[];       // filled from key.csv (optional)
+let DATA_DATE=''; // newest 'Last updated' value found in data.csv
+const SHEET_TITLE=CONFIG.sheetTitle, SHEET_URL=CONFIG.sheetUrl;
+const SURE_ORDER=['Confirmed','Planned','Unconfirmed','-'];
+const SURE_LABEL={'Confirmed':'Confirmed','Planned':'Planned','Unconfirmed':'Unconfirmed','-':'No recent event'};
+const SURE_CLASS={'Confirmed':'Confirmed','Planned':'Planned','Unconfirmed':'Unconfirmed','-':'None'};
+const SURE_COLOR={'Confirmed':'var(--green-c)','Planned':'var(--yellow-c)','Unconfirmed':'var(--blue-c)','-':'var(--gray-c)'};
+const SURE_TEXT={'Confirmed':'var(--surface)','Planned':'var(--text)','Unconfirmed':'var(--surface)','-':'var(--surface)'};
+const sureLabel=v=>SURE_LABEL[v]||v;
+const sureClass=v=>SURE_CLASS[v]||'None';
+const sureColor=v=>SURE_COLOR[v]||'var(--gray-c)';
+const sureText=v=>SURE_TEXT[v]||'var(--surface)';
+const SERIES=['blue','orange','green','yellow','purple','red','teal','pink'];
+const series=i=>'var(--'+SERIES[i%SERIES.length]+'-c)';
+const BLUE='var(--blue-c)', GRAY='var(--gray-c)';
 
 /* ---------- shared helpers ---------- */
 function h(tag, attrs){
@@ -320,28 +316,29 @@ function section(title, intro){
   if(intro) s.append(h('p',{class:'lead',text:intro}));
   return s;
 }
-function erpTokens(v){ return v.split(';').map(s=>s.trim()).filter(Boolean); }
+const splitMulti=v=>String(v||'').split(',').map(s=>s.trim()).filter(Boolean);
+const layerNum=s=>{ const m=/^(\d+)/.exec(s); return m?Number(m[1]):99; };
+const layerColor=l=>layerNum(l)>=99?GRAY:series(layerNum(l)-1);
 const pct=(n,t)=>(t?(n*100/t):0).toFixed(1)+'%';
-const PALETTE=['var(--blue-c)','var(--orange-c)','var(--green-c)','var(--yellow-c)','var(--purple-c)','var(--red-c)','var(--teal-c)','var(--pink-c)'];   // order for charts with several series
-const OTHER_COLOR='var(--gray-c)';
-const STATUS_C={Growing:'var(--green-c)',Stable:'var(--yellow-c)',Struggling:'var(--red-c)',Unclear:'var(--gray-c)'};   // status colours never change
-const PAGE_SIZE=25;
 const SVGNS='http://www.w3.org/2000/svg';
 function svgEl(tag,attrs){ const e=document.createElementNS(SVGNS,tag); for(const k in attrs) e.setAttribute(k,attrs[k]); return e; }
+const keyRows=kind=>KEY.filter(r=>r[1]===kind);
+const keyMeaning=(kind,item)=>{ const r=KEY.find(x=>x[1]===kind&&x[0]===item); return r?r[2]:''; };
+const tipText=(...parts)=>parts.filter(Boolean).join('|');
+
 function donut(items,total,topText,bottomText){
-  const svg=svgEl('svg',{viewBox:'0 0 120 120','class':'donut',role:'img','aria-label':topText+' '+bottomText});
+  const svg=svgEl('svg',{viewBox:'0 0 120 120','class':'donut',role:'img','aria-label':topText+' '+bottomText+': '+items.map(i=>i.label+' '+i.value).join(', ')});
   const r=44, C=2*Math.PI*r; let off=0;
   const bg=svgEl('circle',{cx:60,cy:60,r:r,fill:'none','stroke-width':20}); bg.style.stroke='var(--gray-bg)'; svg.append(bg);
   items.forEach(it=>{
     if(!it.value) return;
     const len=C*it.value/total;
-    const c=svgEl('circle',{cx:60,cy:60,r:r,fill:'none','stroke-width':20,'stroke-dasharray':len+' '+(C-len),'stroke-dashoffset':-off,transform:'rotate(-90 60 60)'});
+    const c=svgEl('circle',{cx:60,cy:60,r:r,fill:'none','stroke-width':20,'stroke-dasharray':len+' '+(C-len),'stroke-dashoffset':-off,transform:'rotate(-90 60 60)','data-tip':tipText(it.label,`${it.value} companies`,`${pct(it.value,total)} of the list`)});
     c.style.stroke=it.color;
-    c.setAttribute('data-tip',`${it.label}|${it.value} brands|${pct(it.value,total)} of ${total} brands`);
     svg.append(c); off+=len;
   });
   const t1=svgEl('text',{x:60,y:58,'text-anchor':'middle','font-size':18,'font-weight':700}); t1.style.fill='var(--text)'; t1.textContent=topText;
-  const t2=svgEl('text',{x:60,y:73,'text-anchor':'middle','font-size':7.5}); t2.style.fill='var(--muted)'; t2.textContent=bottomText;
+  const t2=svgEl('text',{x:60,y:73,'text-anchor':'middle','font-size':8}); t2.style.fill='var(--muted)'; t2.textContent=bottomText;
   svg.append(t1,t2);
   return svg;
 }
@@ -349,136 +346,114 @@ function legend(items,total){
   const box=h('div',{class:'legend'});
   items.forEach(it=>{
     const sw=h('i'); sw.style.background=it.color;
-    box.append(h('div',{'data-tip':`${it.label}|${it.value} brands|${pct(it.value,total)} of ${total} brands`},sw,h('span',{text:it.label}),h('b',{text:`${it.value} · ${pct(it.value,total)}`})));
+    box.append(h('div',{'data-tip':tipText(it.label,`${it.value} companies`,`${pct(it.value,total)} of the list`)},sw,h('span',{text:it.label}),h('b',{text:`${it.value} · ${pct(it.value,total)}`})));
   });
   return box;
 }
-function bars(entries,total,onClick){
+function bars(entries,total,onClick,colorFn){
   const max=Math.max(1,...entries.map(e=>e[1]));
   const wrap=h('div',{class:'bars'});
-  entries.forEach(([label,val])=>{
-    const row=h(onClick?'button':'div',{class:'brow'+(onClick?' click':''),'data-tip':`${label}|${val} brands|${pct(val,total)} of ${total} brands`});
-    if(onClick){ row.type='button'; row.addEventListener('click',()=>onClick(label)); }
+  entries.forEach(([label,val,key])=>{
+    const clickable=onClick && key!==null;
+    const row=h(clickable?'button':'div',{class:'brow'+(clickable?' click':''),'data-tip':tipText(label,`${val} companies`,`${pct(val,total)} of the list`,clickable?'Click to see these companies':'')});
+    if(clickable){ row.type='button'; row.addEventListener('click',()=>onClick(key===undefined?label:key)); }
     const fill=h('div',{class:'fill'}); fill.style.width=(val/max*100)+'%';
-    row.append(h('span',{class:'bl',text:label,title:label}),h('div',{class:'track'},fill),h('span',{class:'bv',text:`${val} · ${pct(val,total)}`}));
+    if(colorFn) fill.style.background=colorFn(label,key);
+    row.append(h('span',{class:'bl',text:label}),h('div',{class:'track'},fill),h('span',{class:'bv',text:`${val} · ${pct(val,total)}`}));
     wrap.append(row);
   });
   return wrap;
 }
+function linkified(text){
+  const box=h('span');
+  const s=String(text||'');
+  const re=/https?:\/\/[^\s;]+/g; let last=0, m;
+  while((m=re.exec(s))){ if(m.index>last) box.append(document.createTextNode(s.slice(last,m.index))); box.append(aLink(m[0],m[0])); last=m.index+m[0].length; }
+  if(last<s.length) box.append(document.createTextNode(s.slice(last)));
+  return box;
+}
 
-/* ---------- per-market config (wording that depends on what the sheet says) ---------- */
-const MARKETS={};
-SETTINGS.markets.forEach(m=>{ MARKETS[m.key]={key:m.key,label:m.label,tab:m.brandsTab,trendsTab:m.trendsTab,hasAnalytics:true,brandsFile:m.brandsFile,trendsFile:m.trendsFile}; });
+/* ---------- market config ---------- */
+const MARKETS={};   // one entry per Region value found in data.csv
 
-const TERMS=[['D2C',/D2C/],['DTC',/\bDTC\b/],['Omnichannel',/Omnichannel/],['Quick-commerce',/quick-commerce/i],['Modern trade',/modern trade/i],['General trade',/general trade/i],['Wholesale',/wholesale/i],['Subscription',/subscription/i],['COCO',/COCO/],['Technographics',/technographics/i],['Apollo range',/Apollo range/],['Fiscal-year labels (FY25, FY2025 …)',/\bFY\d{2,4}\b/],['Quarter labels (Q1 FY27, Q4 …)',/\bQ\d\b/],['YoY',/YoY/],['Cr',/₹[\d,.]+\s?Cr/],['Mn',/\$[\d.]+\s?Mn/],['$ amounts with M or B',/\$[\d.,]+\s?[MB]\b/],['PAT',/\bPAT\b/],['PBT',/\bPBT\b/],['EBITDA',/EBITDA/],['Operating profit',/operating profit/i],['Operating margin',/operating margin/i],['ARR',/\bARR\b/],['GMV',/\bGMV\b/],['Down round',/down ?round/i],['Series A–D',/Series [A-D]\b/],['NYSE',/NYSE/],['NASDAQ',/NASDAQ/],['TSX',/TSX/]];
-
-/* ---------- one full set of tabs for one market ---------- */
 function marketTemplate(M){
   return `
-  <div class="sub">Source: Google Sheet “${SHEET_TITLE}”, tab “${M.tab}”. Every value is shown as written in the sheet.</div>
   <div class="tabs" role="tablist">
-    <button class="tab" role="tab" data-view="brands">Brands<span class="pill" data-id="pill-brands"></span></button>
-    ${M.hasAnalytics?'<button class="tab" role="tab" data-view="analytics">Analytics</button>':''}
+    <button class="tab" role="tab" data-view="companies">Companies<span class="pill" data-id="pill-companies"></span></button>
+    <button class="tab" role="tab" data-view="analytics">Analytics</button>
     <button class="tab" role="tab" data-view="readme">README</button>
     <button class="tab" role="tab" data-view="sources">Sources</button>
   </div>
-  <div data-id="view-brands">
+  <div data-id="view-companies">
     <div class="search">
-      <input data-id="q" type="search" placeholder="Search by brand, category, sub-category, city…" autocomplete="off" aria-label="Search brands">
+      <input data-id="q" type="search" placeholder="Search by company, type, city, update…" autocomplete="off" aria-label="Search companies">
       <button class="btn" data-id="toggleFilters" aria-expanded="false">Filters</button>
     </div>
     <div class="filters" data-id="filters">
-      <label>Category<select data-id="f-cat"></select></label>
-      <label>Growth signal<select data-id="f-growth"></select></label>
-      <label data-id="lbl-erp">ERP signal<select data-id="f-erp"></select></label>
-      <label data-id="lbl-city">HQ city<select data-id="f-city"></select></label>
-      <label data-id="lbl-hc">Headcount<select data-id="f-hc"></select></label>
-      <label data-id="lbl-src">Signal source<select data-id="f-src"></select></label>
-      <label>Sort by<select data-id="f-sort">
-        <option value="sno">S.No</option>
-        <option value="brand">Brand (A–Z)</option>
-        <option value="cat">Category (A–Z)</option>
-        <option value="founded">Founded year (oldest first)</option>
-      </select></label>
+      <label>Layer<select data-id="f-layer"></select></label>
+      <label>Type<select data-id="f-type"></select></label>
+      <label>Company kind<select data-id="f-kind"></select></label>
+      <label>What happened<select data-id="f-event"></select></label>
+      <label>How sure<select data-id="f-sure"></select></label>
+      <label>Country<select data-id="f-country"></select></label>
+      <label>Supply chain level<select data-id="f-level"></select></label>
     </div>
     <div class="kpis" data-id="kpis"></div>
     <div class="status">
-      <div data-id="count"></div>
-      <div class="chips" data-id="chips"></div>
-      <div class="pager"><button class="btn small" data-id="prev" type="button">Previous</button><span data-id="pageinfo"></span><button class="btn small" data-id="next" type="button">Next</button></div>
+      <div class="left"><div data-id="count"></div><div class="chips" data-id="chips"></div></div>
+      <div class="pager" data-id="pager"></div>
     </div>
     <div class="tablewrap">
       <table><thead data-id="thead"></thead><tbody data-id="tbody"></tbody></table>
-      <div class="empty" data-id="empty" hidden>No brands match the current search and filters.</div>
+      <div class="empty" data-id="empty" hidden>No companies match the current search and filters.</div>
     </div>
-    <div class="sub" style="margin-top:10px">Click any row to see every field from the sheet for that brand.</div>
+    <div class="sub" style="margin-top:10px">Click any row to see every field from the sheet for that company. Click a column heading to sort.</div>
   </div>
-  ${M.hasAnalytics?'<div data-id="view-analytics" hidden></div>':''}
+  <div data-id="view-analytics" hidden></div>
   <div data-id="view-readme" hidden></div>
   <div data-id="view-sources" hidden></div>`;
 }
 
 function createMarket(M){
-  const COLS=M.cols, ROWS=M.rows, TRENDS=M.trends, N=ROWS.length;
+  const COLS=M.cols, ROWS=M.rows, N=ROWS.length, PS=Math.max(1,Number(CONFIG.pageSize)||10);
   const I={}; COLS.forEach((c,i)=>I[c]=i);
   const root=document.getElementById('market-'+M.key);
   root.innerHTML=marketTemplate(M);
   const $=id=>root.querySelector('[data-id="'+id+'"]');
   const col=(r,name)=>(r[I[name]]||'').trim();
-  const validUrl=r=>safeUrl(col(r,'Signal source URL'));
-  const hasDate=r=>col(r,'Signal date')!=='' && col(r,'Signal date')!=='None';
-  const noneIn=n=>ROWS.filter(r=>col(r,n)==='None').length;
-  const countMap=fn=>{ const m=new Map(); ROWS.forEach(r=>{ const k=fn(r); m.set(k,(m.get(k)||0)+1); }); return m; };
-  const uniq=name=>countMap(r=>r[I[name]]);
-  const withErpN=ROWS.filter(r=>col(r,'ERP signals')!==NO_ERP && col(r,'ERP signals')!=='').length;
-  const hasErp=withErpN>0;
-  const state={q:'',cat:'',growth:'',erp:'',city:'',hc:'',src:'',sort:'sno',sortCol:'',sortDir:'asc',page:1};
-  let matchEl=h('span');
-  function refresh(){ state.page=1; renderTable(); }
+  const countMap=fn=>{ const m=new Map(); ROWS.forEach(r=>{ [].concat(fn(r)).forEach(k=>m.set(k,(m.get(k)||0)+1)); }); return m; };
+  const uniq=name=>countMap(r=>col(r,name));
+  const multi=name=>countMap(r=>{ const a=splitMulti(col(r,name)); return a.length?[...new Set(a)]:['Not stated']; });
+  const sureList=()=>SURE_ORDER.concat([...uniq('How sure').keys()].filter(v=>!SURE_ORDER.includes(v)&&v!==''));
+  const FILTER_KEYS=['layer','type','kind','event','sure','country','level'];
+  const state={q:'',layer:'',type:'',kind:'',event:'',sure:'',country:'',level:'',sort:'S.No',dir:1,page:1};
+  const sortedEntries=(map,byCount)=>{ const a=[...map.entries()]; a.sort(byCount?(x,y)=>y[1]-x[1]||String(x[0]).localeCompare(String(y[0])):(x,y)=>String(x[0]).localeCompare(String(y[0]))); return a; };
 
-  /* ===== Brands tab ===== */
+  /* ===== Companies tab ===== */
   function fillSelect(sel, items, anyLabel){
     sel.textContent='';
     sel.appendChild(h('option',{value:'',text:anyLabel}));
     items.forEach(([val,label])=>sel.appendChild(h('option',{value:val,text:label})));
   }
-  const sortedEntries=(map,byCount)=>{ const a=[...map.entries()]; a.sort(byCount?(x,y)=>y[1]-x[1]||String(x[0]).localeCompare(String(y[0])):(x,y)=>String(x[0]).localeCompare(String(y[0]))); return a; };
   function buildFilters(){
-    fillSelect($('f-cat'), sortedEntries(uniq('Category'),true).map(([v,n])=>[v,`${v} (${n})`]), 'All categories');
-    const gm=uniq('Growth signal');
-    fillSelect($('f-growth'), GROWTH_ORDER.filter(v=>gm.has(v)).map(v=>[v,`${v} (${gm.get(v)})`]), 'All');
-
-    if(hasErp){
-      const erpCount=new Map(); let anyErp=0, noErp=0;
-      ROWS.forEach(r=>{ const v=col(r,'ERP signals'); if(v===NO_ERP){ noErp++; return; } anyErp++; new Set(erpTokens(v)).forEach(t=>erpCount.set(t,(erpCount.get(t)||0)+1)); });
-      const items=[['__any__',`Any ERP signal found (${anyErp})`],['__none__',`${NO_ERP} (${noErp})`]];
-      sortedEntries(erpCount,true).forEach(([t,n])=>items.push([t,`Includes: ${t} (${n})`]));
-      fillSelect($('f-erp'),items,'All');
-    } else $('lbl-erp').hidden=true;
-
-    const addBlank=(map,sel,lbl,anyLabel)=>{
-      const blank=map.get('')||0; map.delete('');
-      if(map.size<2){ lbl.hidden=true; return; }
-      const items=sortedEntries(map,true).map(([v,n])=>[v,`${v} (${n})`]);
-      if(blank) items.push([BLANK,`(blank in sheet) (${blank})`]);
-      fillSelect(sel,items,anyLabel);
-    };
-    addBlank(uniq('HQ city'),$('f-city'),$('lbl-city'),'All cities');
-    addBlank(uniq('Headcount (approx)'),$('f-hc'),$('lbl-hc'),'All');
-    addBlank(uniq('Signal source'),$('f-src'),$('lbl-src'),'All');
+    const lay=[...uniq('Layer').entries()].sort((a,b)=>layerNum(a[0])-layerNum(b[0]));
+    fillSelect($('f-layer'),lay.map(([v,n])=>[v,`${v} (${n})`]),'All layers');
+    fillSelect($('f-type'),sortedEntries(uniq('Type'),true).map(([v,n])=>[v,`${v} (${n})`]),'All types');
+    fillSelect($('f-kind'),sortedEntries(uniq('Company kind'),true).map(([v,n])=>[v,`${v} (${n})`]),'All kinds');
+    fillSelect($('f-event'),sortedEntries(multi('What happened'),true).map(([v,n])=>[v,`${v} (${n})`]),'Any event');
+    const sm=uniq('How sure');
+    fillSelect($('f-sure'),sureList().filter(v=>sm.has(v)).map(v=>[v,`${sureLabel(v)} (${sm.get(v)})`]),'Any');
+    fillSelect($('f-country'),sortedEntries(multi('Country'),true).map(([v,n])=>[v,`${v} (${n})`]),'All countries');
+    fillSelect($('f-level'),sortedEntries(uniq('Supply chain level'),false).map(([v,n])=>[v,`${v} (${n})`]),'All levels');
   }
   function matches(r){
-    if(state.cat && r[I['Category']]!==state.cat) return false;
-    if(state.growth && r[I['Growth signal']]!==state.growth) return false;
-    if(state.erp){
-      const v=r[I['ERP signals']];
-      if(state.erp==='__any__'){ if(v===NO_ERP) return false; }
-      else if(state.erp==='__none__'){ if(v!==NO_ERP) return false; }
-      else if(!erpTokens(v).includes(state.erp)) return false;
-    }
-    if(state.city){ const v=r[I['HQ city']]; if(state.city===BLANK ? v!=='' : v!==state.city) return false; }
-    if(state.hc){ const v=r[I['Headcount (approx)']]; if(state.hc===BLANK ? v!=='' : v!==state.hc) return false; }
-    if(state.src && r[I['Signal source']]!==state.src) return false;
+    if(state.layer && col(r,'Layer')!==state.layer) return false;
+    if(state.type && col(r,'Type')!==state.type) return false;
+    if(state.kind && col(r,'Company kind')!==state.kind) return false;
+    if(state.sure && col(r,'How sure')!==state.sure) return false;
+    if(state.level && col(r,'Supply chain level')!==state.level) return false;
+    if(state.event && !splitMulti(col(r,'What happened')).includes(state.event)) return false;
+    if(state.country && !splitMulti(col(r,'Country')).includes(state.country)) return false;
     if(state.q){
       const hay=r.join(' \u0001 ').toLowerCase();
       for(const t of state.q.toLowerCase().split(/\s+/).filter(Boolean)){ if(!hay.includes(t)) return false; }
@@ -486,28 +461,17 @@ function createMarket(M){
     return true;
   }
   function sortRows(list){
-    const out=list.slice(), B=r=>r[I['Brand']], C=r=>r[I['Category']];
-    if(state.sortCol){
-      const cn=state.sortCol, dir=state.sortDir==='asc'?1:-1, numeric=(cn==='S.No'||cn==='Founded year');
-      out.sort((a,b)=>{
-        const x=a[I[cn]], y=b[I[cn]];
-        if(x===''&&y==='') return 0; if(x==='') return 1; if(y==='') return -1;      // blanks always last
-        let c;
-        if(numeric) c=Number(x)-Number(y);
-        else if(cn==='Growth signal') c=GROWTH_ORDER.indexOf(x)-GROWTH_ORDER.indexOf(y);
-        else c=x.localeCompare(y);
-        return (c*dir)||B(a).localeCompare(B(b));
-      });
-      return out;
-    }
-    const s=state.sort;
-    if(s==='brand') out.sort((a,b)=>B(a).localeCompare(B(b)));
-    else if(s==='cat') out.sort((a,b)=>C(a).localeCompare(C(b))||B(a).localeCompare(B(b)));
-    else if(s==='founded') out.sort((a,b)=>{ const x=a[I['Founded year']], y=b[I['Founded year']]; if(x===''&&y==='') return 0; if(x==='') return 1; if(y==='') return -1; return Number(x)-Number(y); });
-    else out.sort((a,b)=>Number(a[I['S.No']])-Number(b[I['S.No']]));
+    const k=state.sort, dir=state.dir, out=list.slice();
+    const C=r=>col(r,'Company'), sno=(a,b)=>Number(col(a,'S.No'))-Number(col(b,'S.No'));
+    let cmp;
+    if(k==='S.No') cmp=sno;
+    else if(k==='Layer') cmp=(a,b)=>layerNum(col(a,'Layer'))-layerNum(col(b,'Layer'))||C(a).localeCompare(C(b));
+    else cmp=(a,b)=>col(a,k).localeCompare(col(b,k),undefined,{numeric:true})||C(a).localeCompare(C(b));
+    out.sort((a,b)=>(cmp(a,b)||sno(a,b))*dir);
     return out;
   }
-  const TCOLS=[['S.No','S.No','num'],['Brand','Brand','name'],['Category','Category'],['Sub-category','Sub-category'],['HQ city','HQ city'],['Founded year','Founded'],['Headcount (approx)','Headcount'],['Growth signal','Growth'],['ERP signals','ERP signals']].filter(c=>hasErp||c[0]!=='ERP signals');
+  const TCOLS=[['S.No','S.No','num'],['Company','Company','name'],['Layer','Layer'],['Type','Type'],['Company kind','Kind'],['Country','Country'],['City','City'],['What happened','What happened'],['How sure','How sure'],['Last updated','Updated','num']];
+  const COLTIP={'S.No':'Row number in the sheet','Company':'Company name','Layer':'Where it sits in the AI chain','Type':'What it mainly makes or does','Company kind':'What kind of company it is','Country':'Where its main work happens','City':'City of its main work','What happened':'The kind of recent event found','How sure':'How sure the latest news is','Last updated':'When the row was last checked'};
   function td(text,cls){
     const c=h('td',cls?{class:cls}:null);
     if(text===''){ c.append(h('span',{class:'muted',text:'—'})); } else c.textContent=text;
@@ -518,32 +482,35 @@ function createMarket(M){
     COLS.forEach((cname,i)=>{
       const v=r[i]; const dd=h('dd');
       if(v===''){ dd.className='muted'; dd.textContent='— (blank in sheet)'; }
-      else if(cname==='Signal source URL' && safeUrl(v)) dd.append(aLink(v));
+      else if(cname==='Source') dd.append(linkified(v));
       else dd.textContent=v;
       dl.append(h('dt',{text:cname}),dd);
     });
-    const c=h('td',{colspan:String(TCOLS.length)},dl);
-    return h('tr',{class:'detail'},c);
+    return h('tr',{class:'detail'},h('td',{colspan:String(TCOLS.length)},dl));
+  }
+  function activeFilters(){
+    return [['q','Search'],['layer','Layer'],['type','Type'],['kind','Kind'],['event','Event'],['sure','How sure'],['country','Country'],['level','Level']].filter(([k])=>state[k]);
   }
   function renderTable(){
     hideTip();
-    const list=sortRows(ROWS.filter(matches));
-    const pages=Math.max(1,Math.ceil(list.length/PAGE_SIZE));
+    const all=sortRows(ROWS.filter(matches));
+    const total=all.length, pages=Math.max(1,Math.ceil(total/PS));
     if(state.page>pages) state.page=pages;
     if(state.page<1) state.page=1;
-    const start=(state.page-1)*PAGE_SIZE, slice=list.slice(start,start+PAGE_SIZE);
+    const start=(state.page-1)*PS, list=all.slice(start,start+PS);
     const tb=$('tbody'); tb.textContent='';
     const frag=document.createDocumentFragment();
-    slice.forEach(r=>{
+    list.forEach(r=>{
       const tr=h('tr',{class:'row'});
       TCOLS.forEach(([name,,cls])=>{
-        if(name==='Growth signal'){
-          const v=r[I[name]]; const g=h('td');
-          g.append(h('span',{class:'badge b-'+gcls(v),text:v,'data-tip':`${v}|Growth signal copied from the sheet|The evidence is the Signal reason in the same row`}));
+        if(name==='How sure'){
+          const v=col(r,name); const g=h('td');
+          g.append(h('span',{class:'badge b-'+sureClass(v),text:sureLabel(v),'data-tip':tipText(sureLabel(v),keyMeaning('How sure',v))}));
           tr.append(g);
-        } else tr.append(td(r[I[name]],cls));
+        } else tr.append(td(col(r,name),cls));
       });
-      tr.addEventListener('click',()=>{
+      tr.addEventListener('click',e=>{
+        if(e.target.closest&&e.target.closest('a')) return;
         const next=tr.nextSibling;
         if(next && next.classList && next.classList.contains('detail')){ next.remove(); tr.classList.remove('open'); }
         else { tr.after(detailRow(r)); tr.classList.add('open'); }
@@ -551,207 +518,186 @@ function createMarket(M){
       frag.append(tr);
     });
     tb.append(frag);
-    $('empty').hidden=list.length>0;
+    $('empty').hidden=total>0;
     const cnt=$('count'); cnt.textContent='';
-    if(list.length) cnt.append('Showing ',h('b',{text:`${start+1}–${start+slice.length}`}),' of ',h('b',{text:String(list.length)}),' brands');
-    else cnt.append('Showing ',h('b',{text:'0'}),` of ${N} brands`);
-    $('pageinfo').textContent=`Page ${state.page} of ${pages}`;
-    $('prev').disabled=state.page<=1; $('next').disabled=state.page>=pages;
-    matchEl.textContent=String(list.length);
-    root.querySelectorAll('thead th').forEach(th=>{
-      if(th.dataset.col===state.sortCol) th.setAttribute('aria-sort',state.sortDir==='asc'?'ascending':'descending'); else th.removeAttribute('aria-sort');
-    });
-    renderChips(); renderKpiActive();
+    if(total) cnt.append('Showing ',h('b',{text:`${start+1}-${start+list.length}`}),' of ',h('b',{text:String(total)}),' companies');
+    else cnt.append('Showing ',h('b',{text:'0'}),' of ',h('b',{text:'0'}),' companies');
+    renderChips();
+    renderPager(pages);
+    root.querySelectorAll('th.sortable').forEach(th=>th.setAttribute('aria-sort',th.dataset.col===state.sort?(state.dir>0?'ascending':'descending'):'none'));
+    const km=$('k-match'); if(km) km.textContent=String(total);
+    renderKpiActive();
   }
   function renderChips(){
     const box=$('chips'); box.textContent='';
-    let any=false;
-    [['q','Search'],['cat','Category'],['growth','Growth'],['erp','ERP'],['city','City'],['hc','Headcount'],['src','Source']].forEach(([k,label])=>{
-      if(!state[k]) return;
-      any=true;
-      let val=state[k]; if(val===BLANK) val='(blank)'; if(val==='__any__') val='Any ERP signal'; if(val==='__none__') val=NO_ERP;
-      const b=h('button',{class:'chip',type:'button',text:`${label}: ${val} ×`});
-      b.addEventListener('click',()=>{ state[k]=''; syncControls(); refresh(); });
+    activeFilters().forEach(([k,label])=>{
+      let val=state[k]; if(k==='sure') val=sureLabel(val);
+      const b=h('button',{class:'chip',type:'button',text:`${label}: ${val} ×`,'data-tip':tipText('Remove this filter',`${label}: ${val}`)});
+      b.addEventListener('click',()=>{ state[k]=''; state.page=1; syncControls(); renderTable(); });
       box.append(b);
     });
-    if(any){
-      const c=h('button',{class:'btn small',type:'button',text:'Clear all'});
-      c.addEventListener('click',()=>{ Object.assign(state,{q:'',cat:'',growth:'',erp:'',city:'',hc:'',src:''}); syncControls(); refresh(); });
-      box.append(c);
-    }
+    const clear=h('button',{class:'btn small',type:'button',text:'Clear all'});
+    clear.disabled=!activeFilters().length;
+    clear.addEventListener('click',()=>{ clearAll(); });
+    box.append(clear);
+  }
+  function clearAll(){ Object.assign(state,{q:'',layer:'',type:'',kind:'',event:'',sure:'',country:'',level:'',page:1}); syncControls(); renderTable(); }
+  function renderPager(pages){
+    const box=$('pager'); box.textContent='';
+    const prev=h('button',{class:'btn small',type:'button',text:'Previous'});
+    const next=h('button',{class:'btn small',type:'button',text:'Next'});
+    prev.disabled=state.page<=1; next.disabled=state.page>=pages;
+    prev.addEventListener('click',()=>{ state.page--; renderTable(); });
+    next.addEventListener('click',()=>{ state.page++; renderTable(); });
+    box.append(prev,h('span',{text:`Page ${state.page} of ${pages}`}),next);
   }
   function buildKpis(){
     const box=$('kpis'); box.textContent='';
     const rowStatic=h('div',{class:'kpi-row'}), rowClick=h('div',{class:'kpi-row clicks'}); box.append(rowStatic,rowClick);
-    const gc=uniq('Growth signal');
-    const items=[
-      {n:N,l:'Total brands',tip:'Total brands|All the brands in this list'},
-      {n:N,l:'Matching now',tip:'Matching now|Brands that match the current search and filters',match:true},
-      {n:uniq('Category').size,l:'Categories',tip:'Categories|Different categories in this list'}
+    const sm=uniq('How sure'), em=multi('What happened');
+    const statics=[
+      {n:N,l:'In this list',tip:tipText('In this list',`All companies marked ${M.label}`)},
+      {n:N,l:'Matching now',id:'k-match',tip:tipText('Matching now','Companies that match your search and filters')},
+      {n:uniq('Layer').size,l:'Layers covered',tip:tipText('Layers covered','How many of the layers have at least one company')},
+      {n:uniq('Type').size,l:'Company types',tip:tipText('Company types','How many different types of company are listed')}
     ];
-    GROWTH_ORDER.forEach(g=>items.push({n:gc.get(g)||0,l:g==='Unclear'?'Growth unclear':g,k:'growth',v:g,c:'k-'+g}));
-    if(hasErp) items.push({n:withErpN,l:'Has an ERP signal',k:'erp',v:'__any__',c:'k-erp'},{n:N-withErpN,l:NO_ERP,k:'erp',v:'__none__',c:'k-noerp'});
-    items.forEach(it=>{
-      const tip=it.tip||`${it.l}|${it.n} of ${N} brands (${pct(it.n,N)})|Click to filter the list`;
-      const el=h(it.k?'button':'div',{class:'kpi '+(it.k?'click '+it.c:'static'),'data-tip':tip});
-      if(it.k){ el.type='button'; el.dataset.k=it.k; el.dataset.v=it.v; }
-      const n=h('div',{class:'n',text:String(it.n)});
-      if(it.match) matchEl=n;
-      el.append(n,h('div',{class:'l',text:it.l}));
-      if(it.k) el.addEventListener('click',()=>{ state[it.k]=state[it.k]===it.v?'':it.v; syncControls(); refresh(); });
-      (it.k?rowClick:rowStatic).append(el);
+    statics.forEach(it=>{
+      const n=h('div',{class:'n',text:String(it.n)}); if(it.id) n.setAttribute('data-id',it.id);
+      rowStatic.append(h('div',{class:'kpi static','data-tip':it.tip},n,h('div',{class:'l',text:it.l})));
+    });
+    const clicks=[
+      {n:sm.get('Confirmed')||0,l:'Confirmed news',k:'sure',v:'Confirmed',c:'k-Confirmed',tip:keyMeaning('How sure','Confirmed')},
+      {n:sm.get('Planned')||0,l:'Planned',k:'sure',v:'Planned',c:'k-Planned',tip:keyMeaning('How sure','Planned')},
+      {n:sm.get('Unconfirmed')||0,l:'Unconfirmed',k:'sure',v:'Unconfirmed',c:'k-Unconfirmed',tip:keyMeaning('How sure','Unconfirmed')},
+      {n:sm.get('-')||0,l:'No recent event',k:'sure',v:'-',c:'k-None',tip:keyMeaning('How sure','-')},
+      {n:em.get('New data center or capacity')||0,l:'New capacity news',k:'event',v:'New data center or capacity',c:'k-Capacity',tip:keyMeaning('What happened','New data center or capacity')},
+      {n:em.get('Delay or problem')||0,l:'Delays or problems',k:'event',v:'Delay or problem',c:'k-Delay',tip:keyMeaning('What happened','Delay or problem')}
+    ];
+    clicks.forEach(it=>{
+      const el=h('button',{class:'kpi click '+it.c,type:'button','data-tip':tipText(it.l,it.tip)});
+      el.dataset.k=it.k; el.dataset.v=it.v;
+      el.append(h('div',{class:'n',text:String(it.n)}),h('div',{class:'l',text:it.l}));
+      el.addEventListener('click',()=>{ state[it.k]=state[it.k]===it.v?'':it.v; state.page=1; syncControls(); renderTable(); });
+      rowClick.append(el);
     });
   }
   function renderKpiActive(){ root.querySelectorAll('.kpi[data-k]').forEach(el=>el.classList.toggle('active',state[el.dataset.k]===el.dataset.v)); }
   function syncControls(){
-    $('q').value=state.q; $('f-cat').value=state.cat; $('f-growth').value=state.growth; $('f-erp').value=state.erp;
-    $('f-city').value=state.city; $('f-hc').value=state.hc; $('f-src').value=state.src; $('f-sort').value=state.sort;
+    $('q').value=state.q; $('f-layer').value=state.layer; $('f-type').value=state.type; $('f-kind').value=state.kind; $('f-event').value=state.event;
+    $('f-sure').value=state.sure; $('f-country').value=state.country; $('f-level').value=state.level;
   }
-  function initBrands(){
+  function initCompanies(){
     const tr=h('tr');
-    const guide=new Map(columnGuide().map(r=>[r[0],r[1]]));
     TCOLS.forEach(([name,label])=>{
-      const th=h('th',{class:'sortable',text:label,'data-col':name,'data-tip':`${label}|${String(guide.get(name)||'').replace(/\|/g,'/')}|Click to sort`});
-      th.addEventListener('click',()=>{
-        if(state.sortCol===name) state.sortDir=state.sortDir==='asc'?'desc':'asc'; else { state.sortCol=name; state.sortDir='asc'; }
-        refresh();
-      });
+      const th=h('th',{class:'sortable',text:label,'data-tip':tipText(label,keyMeaning('Column',name)||COLTIP[name],'Click to sort'),tabindex:'0',role:'columnheader','aria-sort':'none'});
+      th.dataset.col=name;
+      const sort=()=>{ if(state.sort===name) state.dir=-state.dir; else { state.sort=name; state.dir=name==='Last updated'?-1:1; } state.page=1; renderTable(); };
+      th.addEventListener('click',sort);
+      th.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); sort(); } });
       tr.append(th);
     });
     $('thead').append(tr);
     buildFilters(); buildKpis();
     let t;
-    $('q').addEventListener('input',e=>{ clearTimeout(t); t=setTimeout(()=>{ state.q=e.target.value.trim(); refresh(); },120); });
-    [['f-cat','cat'],['f-growth','growth'],['f-erp','erp'],['f-city','city'],['f-hc','hc'],['f-src','src'],['f-sort','sort']].forEach(([id,k])=>{
-      $(id).addEventListener('change',e=>{ state[k]=e.target.value; if(k==='sort') state.sortCol=''; refresh(); });
+    $('q').addEventListener('input',e=>{ clearTimeout(t); t=setTimeout(()=>{ state.q=e.target.value.trim(); state.page=1; renderTable(); },120); });
+    [['f-layer','layer'],['f-type','type'],['f-kind','kind'],['f-event','event'],['f-sure','sure'],['f-country','country'],['f-level','level']].forEach(([id,k])=>{
+      $(id).addEventListener('change',e=>{ state[k]=e.target.value; state.page=1; renderTable(); });
     });
     $('toggleFilters').addEventListener('click',e=>{ const open=$('filters').classList.toggle('open'); e.currentTarget.classList.toggle('on',open); e.currentTarget.setAttribute('aria-expanded',String(open)); });
-    $('prev').addEventListener('click',()=>{ state.page--; renderTable(); });
-    $('next').addEventListener('click',()=>{ state.page++; renderTable(); });
-    $('pill-brands').textContent=String(N);
+    $('pill-companies').textContent=String(N);
     renderTable();
   }
-  function jumpToCategory(cat){
-    Object.assign(state,{q:'',cat:cat,growth:'',erp:'',city:'',hc:'',src:''});
-    syncControls(); refresh(); show('brands',true);
+  function jumpTo(k,v){
+    Object.assign(state,{q:'',layer:'',type:'',kind:'',event:'',sure:'',country:'',level:'',page:1});
+    state[k]=v; syncControls(); renderTable(); show('companies',true); window.scrollTo(0,0);
   }
 
-  /* ===== Analytics (India only) ===== */
+  /* ===== Analytics ===== */
   function buildAnalytics(){
-    hideTip();
     const rootA=$('view-analytics'); rootA.textContent='';
     const doc=h('div',{class:'doc'});
-    const cats=[...countMap(r=>col(r,'Category')).entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
-    const GCOL=STATUS_C;
-    const GTXT={Growing:'var(--surface)',Stable:'var(--text)',Struggling:'var(--surface)',Unclear:'var(--surface)'};
-    const withSignal=ROWS.filter(r=>col(r,'Growth signal')!=='Unclear').length;
+    const layers=[...uniq('Layer').entries()].sort((a,b)=>layerNum(a[0])-layerNum(b[0]));
+    const biggest=[...layers].sort((a,b)=>b[1]-a[1])[0];
+    const sm=uniq('How sure');
     doc.append(h('div',{class:'stats'},
-      h('div',{class:'stat','data-tip':'Total brands|All the brands in this list'},h('div',{class:'n',text:String(N)}),h('div',{class:'l',text:'Total brands'})),
-      h('div',{class:'stat','data-tip':'Categories|Different categories in this list'},h('div',{class:'n',text:String(cats.length)}),h('div',{class:'l',text:'Categories'})),
-      h('div',{class:'stat','data-tip':`Largest category|${cats[0][0]}|${cats[0][1]} brands (${pct(cats[0][1],N)} of the list)`},h('div',{class:'n',text:String(cats[0][1])}),h('div',{class:'l',text:`Largest category: ${cats[0][0]}`})),
-      h('div',{class:'stat','data-tip':`Brands with a signal|${withSignal} brands (${pct(withSignal,N)} of the list)|Growing, Stable or Struggling`},h('div',{class:'n',text:String(withSignal)}),h('div',{class:'l',text:'Brands with a Growing, Stable or Struggling signal'}))
+      h('div',{class:'stat','data-tip':tipText('Total companies',`All companies marked ${M.label}`)},h('div',{class:'n',text:String(N)}),h('div',{class:'l',text:'Total companies'})),
+      h('div',{class:'stat','data-tip':tipText('Largest layer','The share of companies in the layer with the most companies')},h('div',{class:'n',text:pct(biggest[1],N)}),h('div',{class:'l',text:`In the largest layer: ${biggest[0]}`})),
+      h('div',{class:'stat','data-tip':tipText('Company types','How many different types of company are listed')},h('div',{class:'n',text:String(uniq('Type').size)}),h('div',{class:'l',text:'Company types'})),
+      h('div',{class:'stat','data-tip':tipText('Confirmed news',keyMeaning('How sure','Confirmed'))},h('div',{class:'n',text:String(sm.get('Confirmed')||0)}),h('div',{class:'l',text:'Companies with confirmed news'}))
     ));
 
-    const s1=section('Brands per category','Number of brands in each category. Click a bar to see those brands.');
-    const top=cats.slice(0,7), rest=cats.slice(7);
-    const dItems=top.map((c,i)=>({label:c[0],value:c[1],color:PALETTE[i]}));
-    dItems.push({label:`Other (${rest.length} categories)`,value:rest.reduce((a,c)=>a+c[1],0),color:OTHER_COLOR});
-    s1.append(h('div',{class:'two'},bars(cats,N,jumpToCategory),h('div',{class:'donutcol'},donut(dItems,N,String(N),'brands'),legend(dItems,N))));
-    const det=h('details',null,h('summary',{text:'Show category numbers as a table'}));
-    const trows=cats.map(([c,n])=>{
-      const rs=ROWS.filter(r=>col(r,'Category')===c);
-      return h('tr',null,h('td',{text:c}),h('td',{text:String(n)}),h('td',{text:pct(n,N)}),GROWTH_ORDER.map(g=>h('td',{text:String(rs.filter(r=>col(r,'Growth signal')===g).length)})));
+    const s1=section('Share of companies by layer of the AI chain','Number of companies in each layer. Click a bar to see those companies.');
+    const lItems=layers.map(([l,n])=>({label:l,value:n,color:layerColor(l)}));
+    s1.append(h('div',{class:'two'},bars(layers.map(([l,n])=>[l,n,l]),N,v=>jumpTo('layer',v),l=>layerColor(l)),h('div',{class:'donutcol'},donut(lItems,N,String(N),'companies'),legend(lItems,N))));
+    const det=h('details',null,h('summary',{text:'Show layer numbers as a table'}));
+    const trows=layers.map(([l,n])=>{
+      const rs=ROWS.filter(r=>col(r,'Layer')===l);
+      return h('tr',null,h('td',{text:l}),h('td',{text:String(n)}),h('td',{text:pct(n,N)}),SURE_ORDER.map(g=>h('td',{text:String(rs.filter(r=>col(r,'How sure')===g).length)})));
     });
-    det.append(h('div',{class:'scroll'},h('table',{class:'plain'},h('thead',null,h('tr',null,['Category','Brands','Share','Growing','Stable','Struggling','Unclear'].map(t=>h('th',{text:t})))),h('tbody',null,trows))));
+    det.append(h('div',{class:'scroll'},h('table',{class:'plain'},h('thead',null,h('tr',null,['Layer','Companies','Share','Confirmed','Planned','Unconfirmed','No recent event'].map(t=>h('th',{text:t})))),h('tbody',null,trows))));
     s1.append(det); doc.append(s1);
 
-    const s2=section('Growth signal by category','Each bar is one category, scaled to 100% and split by the Growth signal. The number inside a coloured block is a brand count, and hovering a block shows the details. The number at the right is the category’s total brands.');
+    const s2=section('How sure is the latest news, layer by layer','Each bar is one layer, split by how sure the latest news is. The number inside a block is a company count.');
     const sl=h('div',{class:'sublegend'});
-    GROWTH_ORDER.forEach(g=>{ const i=h('i'); i.style.background=GCOL[g]; sl.append(h('span',{'data-tip':`${g}|Growth signal copied from the sheet|The evidence is the Signal reason in the same row`},i,g)); });
+    sureList().forEach(g=>{ const i=h('i'); i.style.background=sureColor(g); sl.append(h('span',{'data-tip':tipText(sureLabel(g),keyMeaning('How sure',g))},i,sureLabel(g))); });
     s2.append(sl);
     const wrap2=h('div',{class:'bars'});
-    cats.forEach(([c,n])=>{
-      const rs=ROWS.filter(r=>col(r,'Category')===c);
-      const row=h('button',{class:'brow click',type:'button'});
-      row.addEventListener('click',()=>jumpToCategory(c));
+    layers.forEach(([l,n])=>{
+      const rs=ROWS.filter(r=>col(r,'Layer')===l);
+      const row=h('button',{class:'brow click',type:'button','data-tip':tipText(l,`${n} companies`,'Click to see these companies')});
+      row.addEventListener('click',()=>jumpTo('layer',l));
       const track=h('div',{class:'track tall'});
-      GROWTH_ORDER.forEach(g=>{
-        const k=rs.filter(r=>col(r,'Growth signal')===g).length; if(!k) return;
-        const seg=h('div',{class:'seg','data-tip':`${c} · ${g}|${k} of ${n} brands|${pct(k,n)} of this category`});
-        seg.style.width=(k/n*100)+'%'; seg.style.background=GCOL[g]; seg.style.color=GTXT[g];
+      sureList().forEach(g=>{
+        const k=rs.filter(r=>col(r,'How sure')===g).length; if(!k) return;
+        const seg=h('div',{class:'seg','data-tip':tipText(`${l} · ${sureLabel(g)}`,`${k} of ${n} companies`,`${pct(k,n)} of this layer`)});
+        seg.style.width=(k/n*100)+'%'; seg.style.background=sureColor(g); seg.style.color=sureText(g);
         if(k/n>=0.07) seg.textContent=String(k);
         track.append(seg);
       });
-      row.append(h('span',{class:'bl',text:c,title:c}),track,h('span',{class:'bv',text:`${n} brands`}));
+      row.append(h('span',{class:'bl',text:l}),track,h('span',{class:'bv',text:`${n} companies`}));
       wrap2.append(row);
     });
-    const gm=countMap(r=>col(r,'Growth signal'));
-    const gItems=GROWTH_ORDER.map(g=>({label:g,value:gm.get(g)||0,color:GCOL[g]}));
-    s2.append(h('div',{class:'two'},wrap2,h('div',{class:'donutcol'},donut(gItems,N,String(N),'brands'),legend(gItems,N))));
+    const sItems=sureList().map(g=>({label:sureLabel(g),value:sm.get(g)||0,color:sureColor(g)}));
+    s2.append(h('div',{class:'two'},wrap2,h('div',{class:'donutcol'},donut(sItems,N,String(N),'companies'),legend(sItems,N))));
     doc.append(s2);
 
-    const cityMap=countMap(r=>col(r,'HQ city')); const blankCity=cityMap.get('')||0; cityMap.delete('');
-    const cities=[...cityMap.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));
-    const knownCity=N-blankCity;
-    const cityEntries=cities.slice(0,10), restC=cities.slice(10);
-    if(restC.length) cityEntries.push([`Other cities (${restC.length})`,restC.reduce((a,c)=>a+c[1],0)]);
-    const s3=section('Headquarters city',`Top cities among the ${knownCity} brands that have an HQ city in the sheet.`);
-    s3.append(bars(cityEntries,knownCity));
-    s3.append(h('p',{class:'fine',text:`${blankCity} brands have no HQ city in the sheet and are not included here.`}));
+    const kinds=sortedEntries(uniq('Company kind'),true);
+    const s3=section('Company kind','Who the companies are. Click a bar to see them.');
+    const kItems=kinds.map(([k,n],i)=>({label:k,value:n,color:i<8?series(i):GRAY}));
+    s3.append(h('div',{class:'two'},bars(kinds.map(([k,n])=>[k,n,k]),N,v=>jumpTo('kind',v)),h('div',{class:'donutcol'},donut(kItems,N,String(N),'companies'),legend(kItems,N))));
     doc.append(s3);
 
-    const years=ROWS.map(r=>parseInt(col(r,'Founded year'),10)).filter(y=>!isNaN(y));
-    const bins=[['Before 2010',years.filter(y=>y<2010).length]];
-    for(let y=2010;y<=Math.max(...years);y++) bins.push([String(y),years.filter(v=>v===y).length]);
-    const maxBin=Math.max(1,...bins.map(b=>b[1]));
-    const s4=section('Founded year',`Brands by founding year, for the ${years.length} brands that have a founded year in the sheet.`);
-    const colsBox=h('div',{class:'cols'});
-    bins.forEach(([l,v])=>{ const bar=h('div',{class:'bar'}); bar.style.height=(v/maxBin*100*0.8)+'%'; colsBox.append(h('div',{class:'col','data-tip':`${l}|${v} brands|${pct(v,years.length)} of ${years.length} brands with a founded year`},h('span',{class:'cv',text:String(v)}),bar,h('span',{class:'cl',text:l}))); });
-    s4.append(colsBox);
-    s4.append(h('p',{class:'fine',text:`${N-years.length} brands have no founded year in the sheet and are not included here.`}));
+    const types=sortedEntries(uniq('Type'),true);
+    const s4=section('Companies by type','What each company mainly makes or does. Click a bar to see those companies.');
+    s4.append(bars(types.map(([t,n])=>[t,n,t]),N,v=>jumpTo('type',v)));
     doc.append(s4);
 
-    const hcOrder=['1-50 (Apollo range)','51-200 (Apollo range)','201-500 (Apollo range)','501-1000 (Apollo range)','1001-5000 (Apollo range)','1001+ (Apollo range)','5001+ (Apollo range)'];
-    const hcMap=countMap(r=>col(r,'Headcount (approx)'));
-    const hcEntries=[];
-    hcOrder.forEach(k=>{ if(hcMap.get(k)) hcEntries.push([k.replace(' (Apollo range)',''),hcMap.get(k)]); });
-    hcMap.forEach((v,k)=>{ if(k!=='' && k!=='unknown' && !hcOrder.includes(k)) hcEntries.push([k,v]); });
-    if(hcMap.get('unknown')) hcEntries.push(['unknown',hcMap.get('unknown')]);
-    if(hcMap.get('')) hcEntries.push(['(blank in sheet)',hcMap.get('')]);
-    const s5=section('Headcount',`Headcount values as recorded in the sheet, across all ${N} brands.${[...hcMap.keys()].some(k=>/Apollo range/.test(k))?' Ranges are labelled “Apollo range” in the sheet.':''}`);
-    const hcFilled=N-(hcMap.get('')||0);
-    if(hcFilled/N>=0.2){ s5.append(bars(hcEntries,N)); doc.append(s5); }
+    const ev=sortedEntries(multi('What happened'),true);
+    const s5=section('What happened recently','The kind of recent event found for each company. A company can have more than one event, so shares can add up to more than 100%.');
+    s5.append(bars(ev.map(([t,n])=>[t,n,t]),N,v=>jumpTo('event',v)));
+    doc.append(s5);
 
-    doc.append(h('p',{class:'fine',text:'Every number on this tab is counted directly from the Brands tab of the sheet. Percentages are rounded to one decimal place.'}));
+    const countries=sortedEntries(multi('Country'),true);
+    const cEntries=countries.filter(c=>c[0]!=='Not stated').slice(0,12), restCt=countries.slice(12).filter(c=>c[0]!=='Not stated');
+    const s6=section('Countries','Where the companies’ main work happens. A company that works in several countries counts once in each.');
+    s6.append(bars(cEntries.map(([t,n])=>[t,n,t]),N,v=>jumpTo('country',v)));
+    if(restCt.length) s6.append(h('p',{class:'fine',text:`${restCt.length} more country values are not shown here. Use the Country filter on the Companies tab to see them.`}));
+    doc.append(s6);
+    const cityMap=uniq('City'); const noCity=(cityMap.get('Multiple')||0)+(cityMap.get('Not stated')||0)+(cityMap.get('')||0);
+    ['Multiple','Not stated',''].forEach(k=>cityMap.delete(k));
+    const cities=sortedEntries(cityMap,true);
+    const s7=section('Top cities',`Top cities among the ${N-noCity} companies that name a single city.`);
+    s7.append(bars(cities.slice(0,12).map(([t,n])=>[t,n,null]),N));
+    s7.append(h('p',{class:'fine',text:`${noCity} companies list several cities or none, and are not included here.`}));
+    doc.append(s7);
+
+    const lv=sortedEntries(uniq('Supply chain level'),false);
+    const s8=section('Position in the supply chain','Level 0 is the buyer. Higher levels sell further down the chain. Click a bar to see those companies.');
+    s8.append(bars(lv.map(([t,n])=>[t,n,t]),N,v=>jumpTo('level',v)));
+    doc.append(s8);
+
+    doc.append(h('p',{class:'fine',text:'Every number on this tab is counted directly from the Companies tab. Percentages are rounded to one decimal place.'}));
     rootA.append(doc);
-  }
-
-  function columnGuide(){
-    const blank=n=>ROWS.filter(r=>col(r,n)==='').length;
-    const firstNon=n=>{ const r=ROWS.find(r=>col(r,n)!==''); return r?col(r,n):''; };
-    const topVals=n=>[...uniq(n).entries()].filter(e=>e[0]!=='').sort((a,b)=>b[1]-a[1]).slice(0,3).map(e=>`“${e[0]}”`).join(', ');
-    const erpNames=[...new Set(ROWS.flatMap(r=>col(r,'ERP signals')===NO_ERP?[]:erpTokens(col(r,'ERP signals'))))];
-    const catTop=[...uniq('Category').entries()].sort((a,b)=>b[1]-a[1]).slice(0,2).map(e=>e[0]).join(', ');
-    const colRows=[
-      ['S.No',`Row number, 1 to ${N}.`],
-      ['Brand','Brand name as listed.'],
-      ['Category',`One of ${uniq('Category').size} categories (for example ${catTop}).`],
-      ['Sub-category','A more specific description within the category.'],
-      ['Website domain','The brand’s website domain.'],
-      ['HQ city',`Headquarters city as listed, for example “${firstNon('HQ city')}”. Blank for ${blank('HQ city')} brands.`],
-      ['Founded year',`Year founded as listed. Blank for ${blank('Founded year')} brands.`],
-      ['Short note','A one-line description of the brand.'],
-      ['Headcount (approx)',blank('Headcount (approx)')===N?'Blank for every brand.':`Employee count or range as written, for example “${firstNon('Headcount (approx)')}”. Blank for ${blank('Headcount (approx)')} brands.`],
-      ['Product portfolio','Main products sold.'],
-      ['Sales model',`How the brand sells, as written, for example “${firstNon('Sales model')}”.`],
-      ['ERP signals',erpNames.length?`ERP or accounting software named for the brand (${erpNames.join(', ')}), separated by semicolons. “${NO_ERP}” appears for ${N-withErpN} brands.`:`Every brand in this tab says “${NO_ERP}”.`],
-      ['Signal source',`The source recorded alongside the ERP signals value, as written (most common: ${topVals('Signal source')}).`],
-      ['Growth signal','One of Growing, Stable, Struggling or Unclear (see above).'],
-      ['Signal reason','The text evidence behind the Growth signal.'],
-      ['Signal date',`The date or period attached to the cited signal, exactly as written (for example “${firstNon('Signal date')}”). Blank for ${blank('Signal date')} brands.${noneIn('Signal date')?` The text “None” is written for ${noneIn('Signal date')} brands.`:''}`],
-      ['Signal source URL',`Link to the article or filing cited for the Growth signal. ${ROWS.filter(validUrl).length} brands have a link.${noneIn('Signal source URL')?` The text “None” is written for ${noneIn('Signal source URL')} brands.`:''}`]
-    ];
-    return colRows;
   }
 
   /* ===== README ===== */
@@ -760,73 +706,58 @@ function createMarket(M){
     const doc=h('div',{class:'doc'});
     const about=section('About this tab');
     about.append(
-      h('p',{text:`This tab lists the ${N} brands in the tab “${M.tab}” of the Google Sheet “${SHEET_TITLE}”. Every value is shown as it is written in the sheet. Nothing here has been added, re-scored or independently verified. The Sources tab shows where the sheet’s own information comes from.`}),
-      h('p',{text:'Use the Brands tab to search and filter. Click any brand row to see all 17 fields recorded for it.'})
+      h('p',{text:`This tab lists the ${N} companies marked “${M.label}” in the file ${CONFIG.dataFile}, which was made from the Google Sheet “${SHEET_TITLE}”. Every value is shown as it is written in the file. Nothing here has been added, re-scored or re-categorised.`}),
+      keyMeaning('Tab',M.label)?h('p',{text:`The sheet’s own rule for this region: ${keyMeaning('Tab',M.label)}`}):null,
+      h('p',{text:`Use the Companies tab to search and filter. Click any company row to see all ${COLS.length-1} fields recorded for it.`})
     );
     doc.append(about);
 
-    const gs=section('What “Growing”, “Stable”, “Struggling” and “Unclear” mean','The Growth signal column has exactly four values. Each one is backed by the text in the Signal reason column of the same row.');
-    gs.append(h('div',{class:'note',text:'These labels are copied from the sheet. This page does not add its own rules or thresholds. The evidence for each label is the Signal reason text in the same row; open “Show all” on a card to read every one.'}));
-    const lossCount=ROWS.filter(r=>col(r,'Growth signal')==='Growing' && /loss/i.test(col(r,'Signal reason'))).length;
-    const unclearN=ROWS.filter(r=>col(r,'Growth signal')==='Unclear').length;
-    const lossExamples=ROWS.filter(r=>col(r,'Growth signal')==='Growing' && /loss/i.test(col(r,'Signal reason'))).slice(0,2).map(r=>col(r,'Brand'));
-    const lines={Growing:lossCount?[`${lossCount} of the Growing rows mention a loss in their Signal reason (for example ${lossExamples.join(' and ')}).`]:[],Stable:[],Struggling:[],Unclear:[]};
-    const uMap=new Map(); ROWS.forEach(r=>{ if(col(r,'Growth signal')!=='Unclear') return; const k=col(r,'Signal reason'); uMap.set(k,(uMap.get(k)||0)+1); });
-    const uList=[...uMap.entries()].sort((a,b)=>b[1]-a[1]);
-    const uWithEvidence=ROWS.filter(r=>col(r,'Growth signal')==='Unclear' && (validUrl(r)||hasDate(r))).length;
-    const uShown=uList.slice(0,3), uMore=uList.length-uShown.length;
-    const uNone=ROWS.filter(r=>col(r,'Growth signal')==='Unclear' && (col(r,'Signal date')==='None'||col(r,'Signal source URL')==='None')).length;
-    lines.Unclear=[uList.length===1 ? `All ${unclearN} Unclear rows carry the same Signal reason: “${uList[0][0]}”.` : `The Unclear rows carry ${uList.length} different Signal reasons. Most common: ${uShown.map(([k,n])=>`“${k}” (${n})`).join('; ')}${uMore>0?`; plus ${uMore} other ${uMore===1?'reason':'reasons'} (open “Show all” below)`:''}.`,
-                   uWithEvidence===0 ? 'In the sheet these rows have no source link and no signal date.' : `${uWithEvidence} of these rows ${uWithEvidence===1?'has':'have'} a source link or a signal date.`];
-    if(uNone) lines.Unclear.push(`${uNone} of these rows have the text “None” written in the Signal date and Signal source URL columns.`);
+    const dataLayers=[...uniq('Layer').keys()].filter(Boolean).sort((a,b)=>layerNum(a)-layerNum(b));
+    const layers=keyRows('Layer').length?keyRows('Layer'):dataLayers.map(l=>[l,'Layer','']);
+    const ls=section(`The ${layers.length} layers of the AI chain`,'Every company sits in exactly one layer.'+(keyRows('Layer').length?' The descriptions are the sheet’s own, from key.csv.':''));
     const grid=h('div',{class:'gcards'});
-    GROWTH_ORDER.forEach(g=>{
-      const rows=ROWS.filter(r=>col(r,'Growth signal')===g);
-      const withUrl=rows.filter(validUrl).length, withDate=rows.filter(hasDate).length;
-      const card=h('div',{class:'gcard g-'+g});
+    layers.forEach(([name,,meaning])=>{
+      const rows=ROWS.filter(r=>col(r,'Layer')===name);
+      const card=h('div',{class:'gcard'});
+      card.style.borderLeftColor=layerColor(name);
       card.append(
-        h('div',{class:'gh'},h('span',{class:'gt',text:g}),h('span',{class:'gn',text:`${rows.length} brands`})),
-        lines[g].length?h('ul',null,lines[g].map(t=>h('li',{text:t}))):null,
-        h('div',{class:'gn',text:`With a source link: ${withUrl} of ${rows.length} · With a signal date: ${withDate} of ${rows.length}`})
+        h('div',{class:'gh'},h('span',{class:'gt',text:name}),h('span',{class:'gn',text:`${rows.length} companies`})),
+        meaning?h('p',{text:meaning}):null
       );
       const ex=h('div',{class:'ex'},h('b',{text:'Examples from the sheet'}));
-      rows.slice(0,3).forEach(r=>{ const date=hasDate(r)?col(r,'Signal date'):''; ex.append(h('div',null,h('b',{text:col(r,'Brand')}),col(r,'Signal reason')+(date?` (${date})`:''))); });
-      card.append(ex);
-      const det=h('details',null,h('summary',{text:`Show all ${rows.length} brands labelled ${g}`}));
+      rows.slice(0,3).forEach(r=>ex.append(h('div',null,h('b',{text:col(r,'Company')}),col(r,'What they make or do'))));
+      if(rows.length) card.append(ex);
+      const det=h('details',null,h('summary',{text:`Show all ${rows.length} companies in ${name}`}));
       const list=h('div',{class:'biglist'});
-      rows.forEach(r=>{
-        const date=hasDate(r)?col(r,'Signal date'):'', u=col(r,'Signal source URL');
-        const it=h('div',{class:'it'},h('b',{text:col(r,'Brand')}),' — ',col(r,'Signal reason'),date?` (${date})`:'');
-        if(safeUrl(u)) it.append(' · ',aLink(u,'source'));
-        list.append(it);
-      });
+      rows.forEach(r=>list.append(h('div',{class:'it'},h('b',{text:col(r,'Company')}),' — ',col(r,'Type'))));
       det.append(list); card.append(det); grid.append(card);
     });
-    gs.append(grid);
-    gs.append(h('p',{class:'lead',text:`The “${M.trendsTab}” tab of the sheet also gives a trend for each category (Growing, Stable${TRENDS.some(t=>t[1]==='Unclear')?' or Unclear':''}). Those trends and their summaries are listed in the Sources tab.`}));
-    doc.append(gs);
+    ls.append(grid); doc.append(ls);
 
-    const cg=section('Column guide','The 17 fields recorded for every brand, in the order they appear in the sheet.');
-    const colRows=columnGuide();
-    cg.append(h('div',{class:'scroll'},h('table',{class:'plain'},h('thead',null,h('tr',null,h('th',{text:'Column'}),h('th',{text:'What it contains'}))),h('tbody',null,colRows.map(r=>h('tr',null,h('td',{text:r[0]}),h('td',{text:r[1]})))))));
-    doc.append(cg);
-
-    const tm=section('Terms and abbreviations used in the sheet','The sheet does not define these terms. This table only shows where each one appears in this tab, with one example.');
-    const TFIELDS=['Short note','Sales model','Signal reason','Headcount (approx)','Signal source'];
-    function findTerm(rx){
-      let count=0, ex=null;
-      ROWS.forEach(r=>{
-        for(const f of TFIELDS){
-          const v=col(r,f); const m=v.match(rx);
-          if(m){ count++; if(!ex){ const s=Math.max(0,m.index-30), e=Math.min(v.length,m.index+m[0].length+40); ex={brand:col(r,'Brand'),field:f,snip:(s>0?'…':'')+v.slice(s,e)+(e<v.length?'…':'')}; } break; }
-        }
-      });
-      return {count,ex};
-    }
-    const termRows=[];
-    TERMS.forEach(([name,rx])=>{ const r=findTerm(rx); if(r.count) termRows.push(h('tr',null,h('td',{text:name}),h('td',{text:`${r.count} ${r.count===1?'brand':'brands'}`}),h('td',null,h('b',{text:r.ex.brand}),` (${r.ex.field}): ${r.ex.snip}`))); });
-    tm.append(h('div',{class:'scroll'},h('table',{class:'plain'},h('thead',null,h('tr',null,h('th',{text:'Term'}),h('th',{text:'Appears in'}),h('th',{text:'Example from the sheet'}))),h('tbody',null,termRows))));
+    if(keyRows('Type').length){
+    const tm=section('What each company type means','Plain meanings are from key.csv, with the number of companies of each type here.');
+    const typeCount=uniq('Type');
+    tm.append(h('div',{class:'scroll'},h('table',{class:'plain'},h('thead',null,h('tr',null,['Type','Companies here','Plain meaning (from the sheet)'].map(t=>h('th',{text:t})))),
+      h('tbody',null,keyRows('Type').map(([name,,meaning])=>h('tr',null,h('td',{text:name}),h('td',{text:String(typeCount.get(name)||0)}),h('td',{class:'wrapcell',text:meaning})))))));
     doc.append(tm);
+    }
+
+    const defs=section('How sure, what happened, supply chain level and company kind','What the labels mean, as defined in key.csv.');
+    [['How sure','How sure'],['What happened','What happened'],['Supply chain level','Supply chain level'],['Company kind','Company kind']].forEach(([kind,title])=>{
+      if(!keyRows(kind).length) return;
+      defs.append(h('h3',{text:title,style:'margin:14px 0 4px;font-size:14px'}));
+      const cnt=kind==='How sure'?uniq('How sure'):kind==='What happened'?multi('What happened'):kind==='Supply chain level'?uniq('Supply chain level'):uniq('Company kind');
+      defs.append(h('div',{class:'scroll'},h('table',{class:'plain'},h('thead',null,h('tr',null,['Value','Companies here','Meaning'].map(t=>h('th',{text:t})))),
+        h('tbody',null,keyRows(kind).map(([name,,meaning])=>h('tr',null,h('td',{text:name==='-'?'- (shown as “No recent event”)':name}),h('td',{text:String(cnt.get(name)||0)}),h('td',{class:'wrapcell',text:meaning})))))));
+    });
+    if(defs.querySelector('h3')) doc.append(defs);
+
+    if(keyRows('Column').length){
+    const cg=section('Column guide',`The ${COLS.length-1} fields recorded for every company, in the order they appear in the sheet.`);
+    cg.append(h('div',{class:'scroll'},h('table',{class:'plain'},h('thead',null,h('tr',null,h('th',{text:'Column'}),h('th',{text:'What it contains (from the sheet)'}))),
+      h('tbody',null,keyRows('Column').map(([name,,meaning])=>h('tr',null,h('td',{text:name}),h('td',{class:'wrapcell',text:meaning})))))));
+    doc.append(cg);
+    }
     rootR.append(doc);
   }
 
@@ -834,206 +765,167 @@ function createMarket(M){
   function buildSources(){
     const rootS=$('view-sources'); rootS.textContent='';
     const doc=h('div',{class:'doc'});
-    const s1=section('Where this data comes from','All information in this tab comes from one Google Sheet. This page only displays it.');
+    const s1=section('Where this data comes from',`All information in this tab comes from the file ${CONFIG.dataFile}, made from one Google Sheet. This page only displays it.`);
     s1.append(h('dl',{class:'kv'},
-      h('dt',{text:'Google Sheet'}),h('dd',null,SHEET_URL?[aLink(SHEET_URL,SHEET_TITLE),' (access depends on your Google account)']:SHEET_TITLE),
-      h('dt',{text:'Data files'}),h('dd',{text:`${M.brandsFile} (brands) and ${M.trendsFile} (category trends)`}),
-      h('dt',{text:`Tab “${M.tab}”`}),h('dd',{text:`${N} brands, 17 columns (range A1:Q${N+1}). This is the list shown in the Brands tab.`}),
-      h('dt',{text:`Tab “${M.trendsTab}”`}),h('dd',{text:`${TRENDS.length} categories with a trend, a summary, a brand count and a source link (range A1:E${TRENDS.length+1}).`})
+      h('dt',{text:'Google Sheet'}),h('dd',null,SHEET_URL?aLink(SHEET_URL,SHEET_TITLE):document.createTextNode(SHEET_TITLE),SHEET_URL?' (access depends on your Google account)':''),
+      h('dt',{text:`Region “${M.label}”`}),h('dd',{text:`${N} companies, ${COLS.length-1} columns. This is the list shown in the Companies tab.`}),
+      h('dt',{text:'Newest update in the data'}),h('dd',{text:DATA_DATE||'—'})
     ));
     doc.append(s1);
 
-    const urlRows=ROWS.filter(validUrl);
-    const s2=section('Evidence behind each Growth signal',`${urlRows.length} of ${N} brands have a source link in the Signal source URL column. Each link points to the article or filing cited in that brand’s Signal reason.`);
+    const urlRows=ROWS.filter(r=>/https?:\/\//.test(col(r,'Source')));
+    const s2=section('Sources behind each latest update',`${urlRows.length} of ${N} companies have at least one web link in the Source column. Links are grouped by website.`);
     const byHost=new Map();
-    urlRows.forEach(r=>{ const hn=host(col(r,'Signal source URL')); if(!byHost.has(hn)) byHost.set(hn,[]); byHost.get(hn).push(r); });
-    s2.append(h('p',{text:'Links grouped by website:'}));
+    urlRows.forEach(r=>{ (col(r,'Source').match(/https?:\/\/[^\s;]+/g)||[]).forEach(u=>{ const hn=host(u); if(!hn) return; if(!byHost.has(hn)) byHost.set(hn,[]); byHost.get(hn).push([r,u]); }); });
     [...byHost.entries()].sort((a,b)=>b[1].length-a[1].length||a[0].localeCompare(b[0])).forEach(([hn,list])=>{
       const det=h('details',null,h('summary',{text:`${hn} — ${list.length} ${list.length===1?'link':'links'}`}));
       const box=h('div',{class:'biglist'});
-      list.forEach(r=>box.append(h('div',{class:'it'},h('b',{text:col(r,'Brand')}),' (',col(r,'Growth signal'),hasDate(r)?`, ${col(r,'Signal date')}`:'',') · ',aLink(col(r,'Signal source URL'),'open source'))));
+      list.forEach(([r,u])=>box.append(h('div',{class:'it'},h('b',{text:col(r,'Company')}),' (',sureLabel(col(r,'How sure')),', ',col(r,'Last updated'),') · ',aLink(u,'open source'))));
       det.append(box); s2.append(det);
     });
-    const noUrlRows=ROWS.filter(r=>!validUrl(r));
-    const allUnclear=noUrlRows.every(r=>col(r,'Growth signal')==='Unclear');
-    const nrMap=new Map(); noUrlRows.forEach(r=>{ const k=col(r,'Signal reason'); nrMap.set(k,(nrMap.get(k)||0)+1); });
-    const nrList=[...nrMap.entries()].sort((a,b)=>b[1]-a[1]);
-    let noLinkText=`The other ${noUrlRows.length} brands have no source link in the sheet.`;
-    if(allUnclear) noLinkText=nrList.length===1
-      ? `The other ${noUrlRows.length} brands have no source link. All of them are labelled Unclear with the reason “${nrList[0][0]}”.`
-      : `The other ${noUrlRows.length} brands have no source link. All of them are labelled Unclear, with these Signal reasons: ${nrList.map(([k,n])=>`“${k}” (${n})`).join('; ')}.`;
-    s2.append(h('p',{class:'lead',text:noLinkText}));
-    const parentRows=ROWS.filter(r=>/^Parent /.test(col(r,'Signal reason')));
-    if(parentRows.length) s2.append(h('p',{class:'lead',text:`${parentRows.length} Signal reasons begin with a parent company’s name, meaning they cite the parent’s figures (for example ${parentRows[0][I['Brand']]}: “${col(parentRows[0],'Signal reason').slice(0,40)}…”).`}));
+    const noUrl=ROWS.filter(r=>!/https?:\/\//.test(col(r,'Source')));
+    s2.append(h('p',{class:'lead',text:`The other ${noUrl.length} companies have no web link in the Source column (the sheet cites a publication or says no source was found).`}));
     doc.append(s2);
 
-    const s3=section('What the Signal source column records','The values recorded in the Signal source column, with the number of brands for each.');
+    const s3=section('How sure the latest news is','The values recorded in the How sure column, with the number of companies for each.');
     const chips=h('div',{class:'chips2'});
-    [...countMap(r=>col(r,'Signal source')||'(blank)').entries()].sort((a,b)=>b[1]-a[1]).forEach(([k,n])=>chips.append(h('span',null,k,h('b',{text:String(n)}))));
+    [...uniq('How sure').entries()].sort((a,b)=>sureList().indexOf(a[0])-sureList().indexOf(b[0])).forEach(([k,n])=>chips.append(h('span',null,sureLabel(k),h('b',{text:String(n)}))));
     s3.append(chips); doc.append(s3);
 
-    const s4=section('Category-level trends and their sources',`From the “${M.trendsTab}” tab, shown as written in the sheet.`);
-    const tr=h('table',{class:'plain'},h('thead',null,h('tr',null,['Category','Trend','Brands in list','Summary','Source'].map(t=>h('th',{text:t})))),
-      h('tbody',null,TRENDS.map(c=>h('tr',null,
-        h('td',{text:c[0]}),
-        h('td',null,h('span',{class:'badge b-'+gcls(c[1]),text:c[1]})),
-        h('td',{text:c[3]}),
-        h('td',{class:'wrapcell',text:c[2]}),
-        h('td',null,c[4]?aLink(c[4],host(c[4])):h('span',{class:'muted',text:'— (none in sheet)'}))
-      ))));
-    s4.append(h('div',{class:'scroll'},tr)); doc.append(s4);
-
-    const s5=section('How recent is the evidence','Signal date values as written in the sheet, with the number of brands for each.');
+    const s5=section('How recent is the evidence','Last updated dates as written in the sheet, with the number of companies for each.');
     const c5=h('div',{class:'chips2'});
-    [...countMap(r=>col(r,'Signal date')||'(blank)').entries()].sort((a,b)=>b[1]-a[1]).forEach(([k,n])=>c5.append(h('span',null,k,h('b',{text:String(n)}))));
+    [...uniq('Last updated').entries()].sort((a,b)=>b[0].localeCompare(a[0])).forEach(([k,n])=>c5.append(h('span',null,k||'(blank)',h('b',{text:String(n)}))));
     s5.append(c5); doc.append(s5);
 
     const s6=section('Good to know');
     s6.append(h('ul',null,
-      h('li',{text:'This page shows the sheet exactly as it stands. It does not check the cited articles, and it has no information beyond the sheet.'}),
-      h('li',{text:'To verify any growth signal, open the Signal source URL for that brand (Brands tab, click the row).'}),
-      h('li',{text:'If the sheet is updated, this page needs to be rebuilt to show the changes.'})
+      h('li',{text:`This page shows ${CONFIG.dataFile} exactly as it is. It does not check the cited sources, and it has no information beyond that file.`}),
+      h('li',{text:'To verify any update, open the company row on the Companies tab and follow its Source links.'}),
+      h('li',{text:`To update the page, replace ${CONFIG.dataFile} on GitHub with a new export of the sheet. Nothing else needs to change.`}),
+      h('li',{text:'Regions are kept strictly separate: each company has exactly one Region value in the file.'})
     ));
     doc.append(s6); rootS.append(doc);
   }
 
   /* ===== tabs inside the market ===== */
-  const views=['brands'].concat(M.hasAnalytics?['analytics']:[],['readme','sources']);
-  let current='brands';
+  const views=['companies','analytics','readme','sources'];
+  let current='companies';
   function show(view,push){
     hideTip();
-    if(!views.includes(view)) view='brands';
+    if(!views.includes(view)) view='companies';
     current=view;
     views.forEach(v=>{ $('view-'+v).hidden=v!==view; });
     root.querySelectorAll('.tabs .tab').forEach(b=>{ const on=b.dataset.view===view; b.classList.toggle('active',on); b.setAttribute('aria-selected',String(on)); });
-    if(push) setHash(M.key+(view==='brands'?'':'-'+view));
+    if(push) setHash(M.key+(view==='companies'?'':'-'+view));
   }
   root.querySelectorAll('.tabs .tab').forEach(b=>b.addEventListener('click',()=>{ show(b.dataset.view,true); window.scrollTo(0,0); }));
-  initBrands();
-  if(M.hasAnalytics) buildAnalytics();
-  buildReadme(); buildSources();
+  initCompanies(); buildAnalytics(); buildReadme(); buildSources();
   return {show,views,get current(){return current;}};
 }
 
-/* ---------- top level: India / North America ---------- */
+/* ---------- reading data.csv ---------- */
+function parseCSV(text){
+  if(text.charCodeAt(0)===0xFEFF) text=text.slice(1);
+  const first=text.split('\n')[0]||'';
+  const count=ch=>first.split(ch).length-1;
+  const delim=count('\t')>count(',')&&count('\t')>count(';')?'\t':(count(';')>count(',')?';':',');
+  const rows=[]; let row=[], field='', q=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(q){
+      if(c==='"'){ if(text[i+1]==='"'){ field+='"'; i++; } else q=false; }
+      else field+=c;
+    } else if(c==='"'){ q=true; }
+    else if(c===delim){ row.push(field); field=''; }
+    else if(c==='\r'){ /* ignore */ }
+    else if(c==='\n'){ row.push(field); rows.push(row); row=[]; field=''; }
+    else field+=c;
+  }
+  if(field!==''||row.length){ row.push(field); rows.push(row); }
+  return rows.filter(r=>r.some(c=>String(c).trim()!==''));
+}
+const EXPECTED=['Region','S.No','Company','Layer','Type','Supply chain level','Company kind','HQ','Country','City','Where they operate','What they make or do','Sells to','What happened','How sure','Latest update','Source','Last updated'];
+function buildData(rows){
+  if(rows.length<2) throw new Error('The data file has no company rows.');
+  const norm=s=>String(s).replace(/\s+/g,' ').trim().toLowerCase();
+  const head=rows[0].map(c=>{ const n=norm(c); return EXPECTED.find(e=>norm(e)===n)||String(c).replace(/\s+/g,' ').trim(); });
+  const missing=['Region','Company','Layer'].filter(c=>!head.includes(c));
+  if(missing.length) throw new Error('These column names are missing in the first row of the data file: '+missing.join(', ')+'. Column names must match the original ones exactly.');
+  const ri=head.indexOf('Region'), ci=head.indexOf('Company'), si=head.indexOf('How sure'), ui=head.indexOf('Last updated');
+  const by=new Map();
+  rows.slice(1).forEach(r=>{
+    const cells=head.map((_,i)=>String(r[i]==null?'':r[i]).trim());
+    if(!cells[ci]) return;
+    if(si>=0&&cells[si]==='') cells[si]='-';
+    const region=cells[ri]||'Not stated';
+    if(!by.has(region)) by.set(region,[]);
+    by.get(region).push(cells);
+    if(ui>=0&&/^\d{4}-\d{2}-\d{2}/.test(cells[ui])&&cells[ui]>DATA_DATE) DATA_DATE=cells[ui].slice(0,10);
+  });
+  if(!by.size) throw new Error('No companies were found in the data file.');
+  const regions=[...by.keys()].sort((a,b)=>(a==='India'?-1:b==='India'?1:0));
+  const data={};
+  regions.forEach(label=>{
+    const key=(label.toLowerCase().replace(/[^a-z0-9]/g,'')||'region');
+    data[key]={key,label,tab:label,cols:head,rows:by.get(label)};
+  });
+  return data;
+}
 function setHash(name){ try{ history.replaceState(null,'','#'+name); }catch(e){ location.hash=name; } }
 const instances={};
 function showMarket(key,view,push){
-  hideTip();
   if(!instances[key]) key=Object.keys(instances)[0];
+  hideTip();
   Object.keys(instances).forEach(k=>{
     document.getElementById('market-'+k).hidden=k!==key;
     const b=document.getElementById('mkt-'+k); b.classList.toggle('active',k===key); b.setAttribute('aria-selected',String(k===key));
   });
-  instances[key].show(view||'brands',false);
-  if(push) setHash(key+((view&&view!=='brands')?'-'+view:''));
+  instances[key].show(view||'companies',false);
+  if(push) setHash(key+((view&&view!=='companies')?'-'+view:''));
 }
 function routeFromHash(){
   const parts=(location.hash||'').replace('#','').split('-');
-  showMarket(parts[0],parts[1]||'brands',false);
+  showMarket(parts[0],parts[1]||'companies',false);
 }
-/* ---------- reading the CSV data files ---------- */
-const REQUIRED_BRAND_COLS=['S.No','Brand','Category','Sub-category','Website domain','HQ city','Founded year','Short note','Headcount (approx)','Product portfolio','Sales model','ERP signals','Signal source','Growth signal','Signal reason','Signal date','Signal source URL'];
-const REQUIRED_TREND_COLS=['Category','Trend','Summary','Brands in list','Source URL'];
-
-function parseCsv(text){
-  if(text.charCodeAt(0)===0xFEFF) text=text.slice(1);          // remove the invisible mark some programs add
-  const rows=[]; let row=[], f='', inQ=false;
-  for(let i=0;i<text.length;i++){
-    const c=text[i];
-    if(inQ){
-      if(c==='"'){ if(text[i+1]==='"'){ f+='"'; i++; } else inQ=false; }
-      else f+=c;
-    } else if(c==='"') inQ=true;
-    else if(c===','){ row.push(f); f=''; }
-    else if(c==='\n'||c==='\r'){ if(c==='\r'&&text[i+1]==='\n') i++; row.push(f); rows.push(row); row=[]; f=''; }
-    else f+=c;
-  }
-  if(f!==''||row.length){ row.push(f); rows.push(row); }
-  return rows;
-}
-function cleanTable(rows){
-  const header=rows[0].map(c=>c.trim());
-  const body=rows.slice(1).map(r=>header.map((_,i)=>r[i]===undefined?'':String(r[i]).trim())).filter(r=>r.some(c=>c!==''));
-  return {header,body};
-}
-async function loadTable(file){
-  let res;
-  try{ res=await fetch(file,{cache:'no-store'}); }
-  catch(e){ throw new Error(`The file “${file}” could not be opened.`); }
-  if(!res.ok) throw new Error(`The file “${file}” was not found (error ${res.status}). Check that it is uploaded in the same place as index.html and that its name matches exactly, including capital letters.`);
-  const rows=parseCsv(await res.text());
-  if(!rows.length || rows.every(r=>r.every(c=>c.trim()===''))) throw new Error(`The file “${file}” is empty.`);
-  const table=cleanTable(rows);
-  try{ table.lastModified=(res.headers&&res.headers.get)?res.headers.get('Last-Modified'):null; }catch(e){ table.lastModified=null; }
-  return table;
-}
-function needColumns(file,header,required){
-  const missing=required.filter(c=>!header.includes(c));
-  if(missing.length) throw new Error(`The file “${file}” is missing these columns: ${missing.join(', ')}. The column names in the first row must match exactly (see README.md).`);
-}
-async function loadMarketData(M){
-  const [b,tr]=await Promise.all([loadTable(M.brandsFile),loadTable(M.trendsFile)]);
-  needColumns(M.brandsFile,b.header,REQUIRED_BRAND_COLS);
-  needColumns(M.trendsFile,tr.header,REQUIRED_TREND_COLS);
-  const fix=['S.No','Founded year'].map(n=>b.header.indexOf(n));
-  b.body.forEach(r=>fix.forEach(i=>{ r[i]=r[i].replace(/^(\d+)\.0+$/,'$1'); }));   // 2016.0 becomes 2016
-  const ti=REQUIRED_TREND_COLS.map(n=>tr.header.indexOf(n));
-  M.cols=b.header; M.rows=b.body;
-  M.trends=tr.body.map(r=>ti.map(i=>r[i]));
-  M.lastModified=[b.lastModified,tr.lastModified].filter(Boolean).map(s=>new Date(s)).filter(d=>!isNaN(d)).sort((x,y)=>y-x)[0]||null;
-}
-function showProblem(message,hint){
-  const box=document.getElementById('problem');
+function showProblem(err){
+  const box=document.getElementById('app');
   box.textContent='';
-  box.append(
-    h('h3',{text:'The page could not load its data'}),
-    h('p',{text:message}),
-    h('p',{class:'lead',text:hint||'Fix the file in your GitHub project, wait a minute, then reload this page. README.md explains each step.'})
-  );
-  box.hidden=false;
-  document.getElementById('loading').hidden=true;
+  const onDisk=location.protocol==='file:';
+  box.append(h('div',{class:'problem',role:'alert'},
+    h('h3',{text:onDisk?'Open this page from its web link':'The data could not be loaded'}),
+    h('p',{text:onDisk
+      ? 'You opened this page by double-clicking the file on your computer. Browsers do not allow a page to read data.csv that way. Open the page from your GitHub Pages link instead (see the README for how to get it).'
+      : String(err&&err.message||err)}),
+    onDisk?null:h('p',{text:`Check that ${CONFIG.dataFile} is in the same folder as index.html, that its name is exactly ${CONFIG.dataFile}, and that the first row holds the column names.`})
+  ));
 }
-
-/* ---------- start ---------- */
-async function boot(){
-  document.title=SETTINGS.pageTitle;
-  document.getElementById('page-title').textContent=SETTINGS.pageTitle;
-  document.getElementById('page-sub').textContent=`Source: Google Sheet “${SHEET_TITLE}”. Every value is shown as written in the sheet.`;
-  if(location.protocol==='file:'){
-    showProblem('This page cannot read its data files when it is opened by double-clicking it on your computer. Open it from its web link instead (your GitHub Pages link).','Publish the project on GitHub Pages, then open your link. README.md explains how.');
-    return;
-  }
-  try{ await Promise.all(Object.keys(MARKETS).map(k=>loadMarketData(MARKETS[k]))); }
-  catch(e){ showProblem(e.message); return; }
-  const latest=Object.keys(MARKETS).map(k=>MARKETS[k].lastModified).filter(Boolean).sort((x,y)=>y-x)[0];
-  if(latest) document.getElementById('page-sub').textContent+=` Data published: ${latest.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}.`;
-
-  const notices=[];
-  Object.keys(MARKETS).forEach(k=>{
-    const M=MARKETS[k], gi=M.cols.indexOf('Growth signal'), bi=M.cols.indexOf('Brand'), ci=M.cols.indexOf('Category');
-    const badGrowth=M.rows.filter(r=>!GROWTH_ORDER.includes(r[gi])).length;
-    const noName=M.rows.filter(r=>r[bi]===''||r[ci]==='').length;
-    if(badGrowth) notices.push(`${M.label}: ${badGrowth} ${badGrowth===1?'row has':'rows have'} a Growth signal that is not Growing, Stable, Struggling or Unclear. ${badGrowth===1?'It is':'They are'} shown in the table but not counted in the summary boxes.`);
-    if(noName) notices.push(`${M.label}: ${noName} ${noName===1?'row has':'rows have'} no Brand or no Category in the data file.`);
-  });
-  const nbox=document.getElementById('notices');
-  notices.forEach(n=>nbox.append(h('div',{class:'notice',text:n})));
-  nbox.hidden=!notices.length;
-
-  const bar=document.getElementById('markets'), app=document.getElementById('app');
-  Object.keys(MARKETS).forEach(k=>{
-    const M=MARKETS[k];
-    const b=h('button',{class:'mkt',role:'tab',id:'mkt-'+k},M.label,h('span',{class:'pill',text:String(M.rows.length)}));
-    b.addEventListener('click',()=>{ showMarket(k,'brands',true); window.scrollTo(0,0); });
-    bar.append(b);
-    app.append(h('div',{id:'market-'+k,hidden:''}));
-    instances[k]=createMarket(M);
-  });
-  document.getElementById('loading').hidden=true;
-  window.addEventListener('hashchange',routeFromHash);
-  routeFromHash();
+async function fetchText(url,optional){
+  const res=await fetch(url,{cache:'no-cache'});
+  if(!res.ok){ if(optional) return ''; throw new Error(`Could not find ${url} (error ${res.status}). The page looked for it at this address: ${new URL(url,location.href).href}`); }
+  return res.text();
 }
+(async function start(){
+  try{
+    const text=await fetchText(CONFIG.dataFile,false);
+    DATA=buildData(parseCSV(text));
+    try{ const k=await fetchText(CONFIG.keyFile,true); if(k){ const kr=parseCSV(k); KEY=kr.slice(1).map(r=>[0,1,2].map(i=>String(r[i]||'').trim())).filter(r=>r[0]); } }catch(e){ KEY=[]; }
+    Object.keys(DATA).forEach(k=>{ MARKETS[k]=DATA[k]; });
+    document.getElementById('topsub').textContent=`Source: ${CONFIG.dataFile}, from the Google Sheet “${SHEET_TITLE}”.`+(DATA_DATE?` Newest update in the data: ${DATA_DATE}.`:'');
+    const app=document.getElementById('app'); app.textContent='';
+    const bar=h('div',{class:'markets',role:'tablist',id:'markets'}); app.append(bar);
+    Object.keys(MARKETS).forEach(k=>app.append(h('div',{id:'market-'+k,hidden:'hidden'})));
+    Object.keys(MARKETS).forEach(k=>{
+      const M=MARKETS[k];
+      const b=h('button',{class:'mkt',role:'tab',id:'mkt-'+k},M.label,h('span',{class:'pill',text:String(M.rows.length)}));
+      b.addEventListener('click',()=>{ showMarket(k,'companies',true); window.scrollTo(0,0); });
+      bar.append(b);
+      instances[k]=createMarket(M);
+    });
+    window.addEventListener('hashchange',routeFromHash);
+    routeFromHash();
+  }catch(err){ showProblem(err); }
+})();
+
 /* ===== hover information ===== */
 const tipBox = document.createElement('div');
 tipBox.className = 'tip'; tipBox.id = 'tip'; tipBox.setAttribute('role', 'tooltip');
@@ -1059,8 +951,6 @@ document.addEventListener('mouseleave', hideTip);
 document.addEventListener('focusin', e => { const el = e.target.closest && e.target.closest('[data-tip]'); if (el) { const r = el.getBoundingClientRect(); showTip(el, r.left, r.bottom - 12); } });
 document.addEventListener('focusout', hideTip);
 window.addEventListener('scroll', hideTip, true);
-
-boot();
 
 </script>
 </body>
